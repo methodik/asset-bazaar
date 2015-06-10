@@ -1,0 +1,24 @@
+{
+  "name": "asset-bazaar",
+  "version": "0.0.1",
+  "description": "hevnly's assets for public facing sites",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "grunt-postcss": "^0.5.1"
+  },
+  "devDependencies": {
+    "autoprefixer-core": "^5.2.0",
+    "csswring": "^3.0.5",
+    "grunt": "^0.4.5",
+    "grunt-contrib-less": "^1.0.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-postcss": "^0.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hevnly/asset-bazaar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hevnly/asset-bazaar/issues"
+  }
+}
