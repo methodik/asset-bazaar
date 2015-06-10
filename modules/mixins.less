@@ -1,0 +1,384 @@
+.row-block-parent(@type) {
+	list-style-type: none;
+	position: relative;
+	width: 100%;
+
+	& when(@type = 'preview') {
+		width: 17.65rem; // set explicitly to override nav padding
+		margin: 0 0 0 -.75rem; // pulls preview out of view
+		padding: 0;
+		border-top: 1px @bg-light solid;
+	}
+
+	& when(@type = 'large') {
+		padding-left: 0;
+		border-top: 1px @bg-dark solid;
+		margin-bottom: 2rem;
+	}
+}
+
+.row-block-child(@color) {
+	width: 100%;
+
+	&[data-link] {
+		position: relative;
+		min-height: 3.25rem;
+		padding: 10px 0 10px 3.25rem;
+		font-size: .85rem;
+		line-height: 1rem;
+		cursor: pointer;
+
+		& when(@color = 'dark') {
+			background: #221f20;
+			border-bottom: @text-med @border-width solid;
+		}
+
+		& when(@color = 'light') {
+			background: @bg-lightest;	
+			border-bottom: @border-color-light @border-width solid;
+		}
+	}
+}
+
+.row-block-child-children(@type) {
+
+	& when(@type = 'bigimage') {
+		position: relative;
+		display: inline-block;
+		width: 45%;
+		padding: 0 0 5px 0;
+		margin-bottom: 10px;
+		border-bottom: none;
+	}
+
+	h5 {
+		margin: 0 0 .1rem 0;
+		font-size: 1rem;
+		font-weight: @fontweight-reg;
+		color: @bg-light;
+
+		& when(@type = 'bigimage') {
+			padding: 5px 10px 0 5px;
+		}
+	}
+
+	.thumbnail {
+		position: absolute;
+		left: .75rem;
+		top: 50%;
+		transform: translateY(-50%);
+
+		& when(@type = 'bigimage') {
+			position: relative;
+			width: 100%;
+			height: auto;
+			left: 0;
+			right: 0;
+			top: 0;
+			transform: translateY(0);
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+	}
+
+	p {
+		margin: 0;
+
+		.preview& {
+			max-width: 8.2rem;
+
+			@media @large {
+				max-width: 8.5rem;	
+			}
+		}
+	}
+
+	span {
+		font-size: .75rem;
+		color: @text-light;
+
+		& when(@type = 'bigimage') {
+			display: block;
+			padding: 5px 10px 0 5px;
+		}
+	}
+
+	time {
+		position: absolute;
+		right: .75rem;
+		top: .7rem;
+		font-size: .6rem;
+	}
+
+	& when(@type = '') {
+
+		img {
+			width: 26px; // must set in px, because transition rounds up with and height
+			height: 26px;
+			opacity: .55;
+			transition: opacity @animTime ease;
+
+			@media @large {
+				width: 30px;
+				height: 30px;
+			}
+		}	
+	}
+}
+
+.shadow() {
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.28);
+}
+
+.btn(@type) {
+	border-radius: @border-radius;
+	outline: none;
+	border: none;
+	margin: 0;
+	padding: .25rem 1.5rem;
+	font-size: 1rem;
+	color: @bg-lightest;
+	background: @bg-med;
+	font-family: inherit;
+	font-weight: @fontweight-med;
+	text-align: center; // just in case a link needs to appear as a button
+	line-height: 1.5rem;
+	-webkit-font-smoothing: antialiased;
+	cursor: pointer;
+	transition: background @animTime ease, border @animTime ease, opacity @animTime ease;
+	-webkit-appearance: none;
+
+	@media @large {
+		font-size: .875rem;
+	}
+
+	& when(@type = 'normal') {
+		background: @bg-med;
+		border: @border-width @bg-med solid;
+
+		&:hover, &:focus {
+			background: darken(@bg-med, 10%);
+			border-color: darken(@bg-med, 20%);
+		}
+	}
+
+	& when(@type = 'cta') { // cta = call to action
+		position: relative;
+		background: @accent-link;
+		border: @border-width @accent-link solid;
+
+		p.hide {
+			opacity: 0;
+		}
+
+		.spinner {
+			height: 1.5rem;
+			width: 1.5rem;
+			margin-top: -.75rem;
+			margin-left: -.75rem;
+		}
+
+		&:hover, &:focus {
+			background: darken(@accent-link, 10%);
+			border-color: darken(@accent-link, 20%);
+		}
+	}
+
+	& when(@type = 'cta-soft') {
+		background: @bg-lightest;
+		border: 1px @border-color-med solid;
+		color: @accent-link;
+		transition: color @animTime ease;
+
+		&:hover, &:focus {
+			color: darken(@accent-link, 10%);
+		}
+	}
+
+	& when (@type = 'soft') {
+		background: @bg-lightest;
+		border: 1px @border-color-med solid;
+		color: @text-dark;
+		transition: color @animTime ease;
+
+		&:hover, &:focus {
+			color: darken(@text-dark, 10%);
+		}
+	}
+
+	& when(@type = 'error') {
+		background: @accent-error;
+		border: @border-width @accent-error solid;
+
+		&:hover, &:focus {
+			background: darken(@accent-error, 10%);
+			border-color: darken(@accent-error, 20%);
+		}
+	}
+
+	& when(@type = 'huge') {
+		display: block;
+		width: 100%;
+		padding: 1.25rem;
+		background: @accent-link;
+		border: @border-width @accent-link solid;
+		color: white;
+		font-weight: @fontweight-bold;
+		font-size: 1.25rem;
+
+		&:hover, &:focus {
+			background: darken(@accent-link, 10%);
+			border-color: darken(@accent-link, 15%);
+		}
+	}
+
+	& when(@type = 'minor') {
+		background: transparent;
+		padding: .66rem;
+		color: @text-med;
+		text-align: right;
+
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
+	}
+
+	& when(@type = 'sticky') {
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		width: 4.5rem;
+		padding: 0;
+		background: @accent-link;
+		border-top-left-radius: 0px;
+		border-bottom-left-radius: 0px;
+		text-align: center;
+		
+		&:hover, &:focus {
+			background: darken(@accent-link, 10%);
+		}
+
+		&.unfollow {
+			background: @accent-error;
+
+			&:hover, &:focus {
+				background: darken(@accent-error, 10%);
+			}
+		}	
+	}
+
+	& when(@type = 'back') {
+		position: relative;
+		padding-left: 0;
+		padding-right: 0;
+		background: none;
+		border: none;
+		color: @text-med;
+		
+		&:hover {
+
+			span {
+				color: @text-med;
+				transition: color @animTime ease;
+			}
+
+			.icn-arrow-left {
+				left: -.33rem;
+			}
+		}
+		
+		.icn-arrow-left {
+			position: absolute;
+			top: .4rem;
+			left: 0rem;
+			width: 16px;
+			height: 16px;
+			transition: left @animTime ease;
+
+			@media @medium {
+				top: .5rem;
+			}
+		}
+	}
+}
+
+.tertiary-nav-border() {
+    content: '';
+    display: block;
+    background: @border-nav-color;
+    height: 75%;
+    width: @border-width;
+    position: absolute;
+    left: 0;
+    top: 12.5%;
+}
+
+.main-section-padding() {
+	padding: 1.5rem .5rem .5rem .5rem;
+
+	@media @medium {
+		padding: 1.5rem .75rem .75rem .75rem;
+	}
+
+	@media @large {
+		max-width: 47rem;
+		margin: 0 auto;
+		padding: 1.5rem 0 0 0;
+	}
+}
+
+.item-container {
+
+	@media @medium {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+}
+
+.sc(@cols) { // = slider cols
+	width: (@cols * 100%);
+	display: flex;
+	transition: margin @animTime ease;
+
+	&[data-showcol="0"] {
+		margin-left: 0;
+	}
+
+	&[data-showcol="1"] {
+		margin-left: -100%;
+	}
+
+	&[data-showcol="2"] {
+		margin-left: -200%;
+	}
+
+	&[data-showcol="3"] {
+		margin-left: -300%;
+	}
+
+	&[data-showcol="4"] {
+		margin-left: -400%;
+	}
+
+	> .sc-col {
+		.main-section-padding;
+		width: 0% + (100 / @cols); // a bit of hack to get the percentage unit working.
+
+		&.show > * {
+			display: block;
+		}
+
+		&.fadein > * {
+			opacity: 1;
+		}
+
+		> * {
+			display: none;
+			opacity: 0;
+			transition: opacity .2s   ease;
+		}
+	}
+}

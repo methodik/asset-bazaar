@@ -1,0 +1,108 @@
+/* ==============================
+	docs
+   ============================== */
+
+.docs {
+	max-width: 47rem;
+	margin: .5rem auto 1rem auto;
+	padding: .5rem;
+	line-height: 1.5;
+}
+
+.docs-content-area {
+	padding: 0 .5rem .5rem .5rem;
+	background: @bg-lightest;
+	border: 1px @border-color-med solid;
+	border-radius: @border-radius;
+
+	@media @large {
+		float: right;
+		width: 64%;
+		margin-top: 1rem;
+		padding: 0 1rem 1rem 1rem;
+	}
+
+	.docs-title {
+		font-size: 2rem;
+		margin: .75rem 0;
+	}
+}
+
+nav.docs-secondary {
+	margin-top: 1rem;
+	padding: 0 0 .5rem 0;
+	background: @bg-lightest;
+	border: 1px @border-color-med solid;
+	border-radius: @border-radius;
+
+	@media @large {
+		width: 32%;
+		float: left;
+	}
+
+	h3 {
+		margin: 0 0 .5rem 0;
+		padding: 1rem 0 1rem .5rem;
+		border-bottom: 1px @border-color-med solid;
+		background: whitesmoke;
+	}
+
+	a {
+		display: block;
+		position: relative;
+		margin-left: .75rem;
+		padding: .25rem 0 .25rem 1rem;
+
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			left: 0;
+			top: .875rem;
+			width: 4px;
+			height: 4px;
+			background: @bg-dark;
+			border-radius: 50%;
+		}
+	}
+}
+
+
+
+
+/* == Jenns doc styling == */
+
+.docs {
+
+	ol {
+		padding-left: 1.25rem;
+
+		> li {
+			margin-bottom: .5rem;
+		}
+	}
+
+	ol.legal-list {
+	    counter-reset: counter;
+	    list-style: outside;
+	}
+
+	ol.legal-list > li {
+	    counter-increment: counter;
+	    list-style:none;
+	    margin: 10px 0 10px -14px;
+	}
+
+	ol.legal-list > li:before {
+	    content:counters(counter, ".") ".";
+	    text-indent: 5px
+	}
+	ul.legal-section-indent > li {
+	    margin: 0 0 0 20px;
+	}
+
+	.subcountersection {
+	    margin: 0 0 0 20px;
+	}	
+}
+

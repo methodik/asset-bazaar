@@ -1,0 +1,49 @@
+/* ==============================
+	buttons
+   ============================== */
+
+button, input[type=submit] {
+	.btn('normal');
+
+	&.huge {
+		.btn('huge')
+	}
+
+	&.minor {
+		.btn('minor')
+	}
+
+	&.cta {
+		.btn('cta');
+
+		&.not-allowed {
+			cursor: not-allowed;
+			opacity: .5;
+
+			&:hover, &:focus {
+				background: @accent-link;
+				border: @border-width @accent-link solid;
+			}
+		}
+	}
+
+	&.cta-soft {
+		.btn('cta-soft');
+	}
+
+	&.soft {
+		.btn('soft');
+	}
+}
+
+button p {
+	margin: 0;
+}
+
+input[type=submit] {
+	background: @accent-link;
+}
+
+a.button {
+	.btn('normal');
+}

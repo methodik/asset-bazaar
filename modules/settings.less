@@ -1,0 +1,207 @@
+/* ==============================
+	settings
+   ============================== */
+
+// temporarily remove change profile pic module
+#settings_profilePic {
+	display: none !important;
+}
+
+.settings-title {
+	text-align: center;
+	font-weight: 500;
+	line-height: 1;
+}
+
+.settings {
+	.sc(2);
+	
+	section {
+		.item-container;
+		.main-section-padding;
+		position: relative;
+		display: block;
+
+		> div {
+            width: 100%;  
+			max-width: 32rem;
+			margin: 0 auto;
+			padding: .1rem;
+		}
+
+	}
+
+	.choose-file {
+		margin-bottom: 2rem;
+		max-width: 32rem;
+		margin: 0 auto 2rem auto;
+	}
+
+	button.submit {
+		position: relative;
+
+		&.loading {
+
+			.spinner {
+				display: block;
+                width: 1.75em;
+                height: 1.75em;
+                margin-top: -0.75rem;
+                margin-left: -0.75rem;
+			}
+			
+			p {
+				opacity: 0;
+			}
+		}
+	}
+}
+
+.account-details {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 32rem;
+	overflow: hidden;
+	font-weight: @fontweight-med;
+	overflow: hidden;
+
+	&.edit-view {
+
+		> * {
+			display: none;
+
+			// profile pic has no edit state
+			.profile-pic& {
+				display: inline-block;
+			}
+		}
+
+		.change-field {
+			display: block;
+
+			// profile pic has no change field
+			.profile-pic& {
+				display: none;
+			}
+		}
+	}
+
+	span, a {
+		display: inline-block;
+		padding: 1rem 0;
+		color: @text-med;
+		white-space: nowrap;
+	}
+
+	a {
+		text-decoration: underline;
+	}
+
+	img {
+		position: absolute;
+		top: .66rem;
+		width: 2rem;
+		z-index: @layer1;
+
+		&[attr=id] {
+			z-index: @layer0;
+			visibility: hidden;
+
+			&.img-added {
+				z-index: @layer1;
+			}
+		}
+	}
+
+	.type {
+		width: 33%;
+		color: @text-med;
+	}
+
+	.current-data {
+		width: ~'calc(66% - 55px)';
+		padding-right: 1rem;
+		color: @bg-med;
+	}
+
+	label[for^="notifications-"] {
+		width: 100%;
+		display: inline-block;
+		color: @text-med;
+		margin-bottom: 1rem;
+	}
+
+	input[type=checkbox] {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+	> button {
+		position: absolute;
+		right: 0;
+		top: 50%;
+		padding: .15rem 1rem;
+		transform: translatey(-50%);
+	}
+
+	input[type=file] {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		opacity: 0;
+	}
+
+	.change-field {
+		display: none;
+		padding: 1.5rem 0;
+		border-top: @border-width @border-color-med solid;
+		border-bottom: @border-width @border-color-med solid;
+		overflow: hidden;
+
+		form {
+			overflow: hidden;
+		}
+
+		label {
+			margin-top: 0;
+		}
+
+		input, textarea {
+			margin-bottom: .75rem;
+		}
+
+		button {
+			float: right;
+
+			p.hide {
+				opacity: 0;
+			}
+		}
+
+		.submit {
+			.btn('cta');
+			margin-left: .5rem;
+		}
+	}
+}
+
+.settings-notifications {
+
+	label {
+		font-weight: 500;
+		font-size: 15px;
+
+		@media @large {
+			font-size: .875rem;
+		}
+	}
+
+	input[type=checkbox] {
+		top: .875rem;
+	}
+}

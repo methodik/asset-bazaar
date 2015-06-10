@@ -1,0 +1,542 @@
+/* ==============================
+	crud module
+   ============================== */
+
+.crud-table {
+	position: relative;
+	margin: 1.5rem .5rem;
+	background: @bg-lightest;
+	border: 1px @border-color-med solid;
+	border-radius: @border-radius;
+	overflow: hidden;
+	transition: height @physicsBezier;
+	transform: translateZ(0); // fixes Chrome hairline border bug with transitions
+
+	@media @large {
+		max-width: 32rem;
+		margin: 1.5rem auto;
+	}
+
+	// manipulate CRUD to look like an independent form for first time buyers
+	&.create-view {
+		margin-top: 0;
+		border: none;
+		background: transparent;
+		
+		h3 {
+			display: none;
+		}
+
+		.edit-view {
+			padding: 0 1px 1px 1px; // prevents another chrome border bug
+			background: transparent;
+
+			label:first-of-type {
+				margin-top: 0;
+			}
+		}
+
+		.error {
+			margin-bottom: 1rem;
+			
+			// add some space between error message and label
+			+ label:first-of-type {
+				margin-top: 1rem;
+			}
+		}
+	}
+
+	&.loading {
+
+		label, input, select {
+			opacity: 0;
+		}
+
+		.spinner {
+			display: block;
+		}
+
+		.edit-view-controls {
+			opacity: .5;
+			cursor: not-allowed;
+		}
+	}
+
+	&.empty { 
+
+		table, .show-edit-btn {
+			opacity: 0;
+		}
+	}
+
+	.controls {
+		display: flex;
+		width: 200%;
+		margin-left: -100%;
+		transition: margin @animTime @physicsBezier;
+
+		.show-edit-state& {
+			margin-left: 0%;
+		}
+
+		.show-edit-view& {
+			display: none;
+		}
+
+		button {
+			padding: .5rem;
+			border: none;
+			border-top: 1px @border-color-med solid;
+			border-radius: 0;	
+		}
+	}
+
+	.main-controls, .sub-controls {
+		width: 50%;
+	}
+
+	.sub-controls {
+		display: flex;
+		
+		button {
+			position: relative;
+			width: 50%;
+		}
+
+		.add-new:hover line {
+			stroke: darken(@accent-link, 10%);
+		}
+
+		.cancel {
+			border-left: 1px @border-color-med solid;
+		}
+
+		.icn-plus {
+			position: absolute;
+			top: .5rem;
+			left: .5rem;
+		}
+
+		line {
+			stroke: @accent-link;
+		}
+	}
+
+	.show-edit-btn {
+		width: 100%;
+	}
+
+	// TEMP SPECIAL STYLES FOR CRUD ERRORS
+	// border style for the offending input
+	input.error-highlight, input.error-highlight:hover {
+		border: @border-width @accent-error solid;
+		.spaceboots();
+	}
+
+	// global CRUD message at the top of create & edit views
+	ul.error {
+		width: 100% !important;
+		margin: 0 !important;
+		
+		// hide pseudo element as it gives visual cue to inline validation
+		&:after {
+			display: none;
+		}
+	}
+}
+
+h3.crud-title {
+	margin: 2rem 0 1.5rem 0;
+	font-size: 1.25rem;
+	text-align: center;
+	font-weight: 500;
+}
+
+table.crud {
+	width: ~'calc(100% + 61px)';
+	background: @bg-lightest;
+	border-collapse: collapse;
+	border-radius: @border-radius;
+	margin-left: -60px;
+	transition: margin @animTime @physicsBezier;
+
+	.show-edit-state & {
+		margin-left: 0px;
+	}
+
+	.show-edit-view & {
+		display: none;
+	}
+
+	thead {
+
+		th {
+			color: @text-light;
+			font-weight: 500;
+			text-align: left;
+			border-bottom: 1px @border-color-med solid;
+		}
+	}
+
+	tr:last-of-type td {
+		border-bottom: none;
+	}
+
+	th, td {
+		border-left: 1px @border-color-med solid;
+		padding: .5rem;
+	}
+
+	td {
+		font-size: .875rem;
+		vertical-align: top;
+		border-bottom: 1px @border-color-med solid;
+	}
+
+	th.edit {
+		background: @bg-med;
+		border-bottom: 1px @bg-lightest solid;
+	}
+
+	td.edit {
+		width: 60px;
+		height: 60px;
+		background: @accent-error;
+		border-bottom: 1px @bg-lightest solid;
+		font-size: 1rem;
+		color: @bg-lightest;
+		font-weight: 500;
+		text-align: center;
+		vertical-align: middle;
+		transition: background @animTime ease;
+		cursor: pointer;
+
+		&:hover {
+			background: darken(@accent-error, 10%);
+		}
+
+		&:last-of-type {
+			border-bottom: 1px @border-color-med solid;
+		}
+	}
+
+	.edit, td.edit + td, th.edit + th {
+		border-left: none;
+	}
+}
+
+// wallet crud module
+.wallet {
+
+	.card-choose {
+		text-align: center;	
+	}
+
+	.month, .year {
+		display: inline-block;
+		width: ~'calc(50% - .25rem)';
+	}
+
+	.year {
+		float: right;
+	}
+
+	.card-cvc {
+		width: ~'calc(50% - .25rem)';
+	}
+
+	// TEMP STYLING FOR WALLET ERROR (IN COLLAPSED VIEW)
+	tr.error {
+
+		td.edit {
+			background: darken(@accent-error, 10%);
+			border-right: 1px @border-color-med solid;
+		}
+		
+		// remove '!' & pointer for row styling
+		&:before, &:after {
+			display: none;
+		}
+	}
+
+	.tip {
+		background: #fafafa;
+		padding: .5rem;
+		border: 1px #D3D3D3 dashed;
+		border-radius: 2px;
+
+		span {
+			font-weight: 500;
+			display: block;
+			margin-bottom: .25rem;
+		}
+	
+		// no need to show message when a user is adding a new card
+		.add-new-form& {
+			display: none;
+		}
+	}
+}
+
+// address book crud module
+.crud.address-book {
+	
+	td.address-billing, td.address-delivery, th.address-billing, th.address-delivery {
+		text-align: center;
+	}
+}
+
+// cart crud module
+.cart-container	{
+	padding-left: 1px; // avoids Chrome border flickering bug
+	margin: 1.5rem .5rem;
+	overflow: hidden;
+
+	@media @large {
+		float: left;
+		width: ~'calc(60% - 1.5rem)';
+		margin: 0 auto auto 1.5rem;
+	}
+}
+
+.crud-table.cart {
+	width: 100%;
+	margin: 0; // override default crud styling because cart has a container
+
+	@media @large {
+		margin-top: 1.5rem;
+	}
+
+	.sub-controls {
+
+		.cancel {
+			width: 100%;
+			border-left: none;
+		}
+	}
+
+	// alter positioning of grand total
+	+ .key-value-pair {
+		float: right;
+		margin: 1rem 0 0 0;
+	}
+}
+
+.cart {
+	padding-right: 1px;
+
+	.cart-quantity, .cart-total {
+		text-align: center;
+	}
+
+	td.cart-product {
+		position: relative;
+		padding-left: 3rem;
+	}
+
+	.cart-total-amount:before {
+		content: '£';
+		margin-right: .25rem;
+	}
+
+	.cart-product-image {
+		width: 2rem;
+		position: absolute;
+		top: .5rem;
+		left: .5rem;
+	}
+
+	p {
+		margin: 0;
+
+		&.cart-product-price {
+			color: @text-med;
+
+			&:before {
+				content: '£';
+				margin-right: .25rem;
+			}
+		}
+	}
+
+	.cart-product-remove {
+        cursor: pointer;
+		display: inline-block;
+		margin-top: .5rem;
+        padding-right: .5rem;
+		color: @text-med;
+	}
+}
+
+// edit view
+.crud-table {
+
+	.edit-view {
+		display: block;
+		position: absolute;
+		padding: 3rem .5rem 3rem .5rem;
+		background: @bg-lightest;
+		transform: scale(.875);
+		opacity: 0;
+		transition: transform .3s ease, opacity .6s ease;
+
+		&.remove-transition {
+			transition: none;
+		}
+
+		.show-edit-view& {
+			position: relative;
+			visibility: visible;
+			transform: scale(1);
+			opacity: 1;
+		}
+
+		.show-edit-state.add-new-form.show-edit-view& {
+			padding-bottom: 5rem; // show extra padding when delete button isn't present.
+		}
+
+		* {
+			transition: all opacity ease;
+		}
+
+		h3 {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			width: 100%;
+			height: 2rem;
+			margin: 0;
+			font-size: 1rem;
+			line-height: 2rem;
+			text-align: center;
+			font-weight: 500;
+			color: @text-med;
+			border-bottom: @border-width @border-color-med solid;
+		}
+
+		[disabled], [disabled]:hover, &[disabled]:focus {
+			border: 1px @border-color-med dashed; 
+			opacity: .4;
+		}
+
+		button.delete {
+			background: transparent;
+			border: none;
+			color: @accent-link;
+			margin: .875rem auto .5rem;
+		}
+	}
+
+	.error-highlight {
+		border: @border-width @accent-error solid;
+	}
+
+	.edit-view-controls {
+		position: absolute;
+		display: none;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		transition: opacity .3s ease;
+		
+		.show-edit-view& {
+			display: flex;
+		}
+
+		button {
+			width: 50%;
+			padding: .5rem;
+			border: none;
+			border-radius: 0;
+		}
+
+		.cancel, .delete {
+			border-top: 1px @border-color-med solid;
+		}
+
+		.empty& .cancel {
+			display: none;
+		}
+
+		.delete {
+			border-left: 1px @border-color-med solid;
+		}
+
+		.update {
+
+			svg {
+				position: absolute;
+				top: .5rem;
+				right: .5rem;
+			}
+
+			line {
+				stroke: @bg-lightest;
+			}
+		}
+
+		.empty& button.update {
+			width: 100%;
+		}
+	}
+}
+
+// form-type dependent elements
+.add-new-form .edit-only {
+	display: none;
+}
+
+.edit-form {
+	
+	.add-new-only {
+		display: none;
+	}
+
+  	.delete {
+  		display: block;
+  	}
+	
+	// hide plus icon from update button
+  	button.update .icn-plus {
+  		display: none;
+  	}
+}
+
+// submit button styles from views
+.cta.submit.choose-details, .cta.submit.choose-address, .cta.submit.pay-securely {
+	display: block;
+	width: ~'calc(100% - 1rem)';
+	margin: .5rem;
+
+	@media @large {
+		margin: .5rem auto;
+		max-width: 32rem;
+	}
+}
+
+.cta.submit.choose-details {
+	margin: .5rem auto;
+}
+
+.checkout-slide .error {
+	width: ~'calc(100% - 1rem)';
+	margin: 1rem .5rem;
+
+	&:after {
+		display: none;
+	}
+
+	@media @large {
+		max-width: 32rem;
+		margin: 1rem auto;
+	}
+}
+
+button.normal.continue-shopping {
+
+	@media @large {
+		margin-top: 2rem;
+	}
+}

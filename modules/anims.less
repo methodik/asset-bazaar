@@ -1,0 +1,64 @@
+// generic animation classes
+.bounce {
+    animation: bounce @animTime 1;
+}
+
+.glow {
+    animation: glow @animTime 1;
+}
+
+.scalein {
+    animation: scalein @animTime 1;
+}
+
+.spaceboots {
+    animation: spaceboots .3s 1;
+}
+
+@keyframes rotate {
+    50% {
+        opacity: 1;
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes bounce {
+    50% {
+        transform: scale(.97);
+    }
+}
+
+@keyframes glow {
+    from {
+        background: @bg-med;
+    }
+    to {
+        background: transparent;
+    }
+}
+
+// animation declarations
+@keyframes spaceboots {
+    0% { transform: translate(2px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(0deg); }
+    30% { transform: translate(0px, 2px) rotate(1deg); }
+    40% { transform: translate(1px, -1px) rotate(0deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(2px, 1px) rotate(1deg); }
+    80% { transform: translate(-1px, -1px) rotate(0deg); }
+    90% { transform: translate(2px, 0px) rotate(-1deg); }
+    100% { transform: translate(1px, 1px) rotate(-.5deg); }
+}
+
+@keyframes scalein {
+    from {
+        opacity: 0;
+        transform: scale(.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

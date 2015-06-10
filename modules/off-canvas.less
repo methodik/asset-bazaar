@@ -1,0 +1,29 @@
+/* ==============================
+	off canvas controls
+   ============================== */
+
+.overlay {
+	visibility: hidden;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0);
+	z-index: @layer3;
+	transition: background @animTime ease;
+}
+
+// when an element that depends on the overlay is shown,
+// also show the overlay
+.overlay-dependant.show {
+
+	& ~ .overlay {
+		visibility: visible;
+		background: rgba(0, 0, 0, 0.55);
+	}
+
+	&.dark ~ .overlay {
+		background: rgba(0, 0, 0, 0.875);
+	}
+}

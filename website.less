@@ -1,0 +1,672 @@
+@import '../normalise.less';
+@import '../vars.less';
+@import '../mixins.less';
+@import '../basic.less';
+@import '../buttons.less';
+@import '../icons.less';
+@import '../anims.less';
+@import '../spinner.less';
+
+/* ==============================================
+   website specific variables
+   ============================================== */
+
+@smallOnly: ~'screen and (max-device-width: 780px)';
+@medium: ~'screen and (min-width: 600px)';
+@large: ~'screen and (min-width: 730px)';
+@xlarge: ~'screen and (min-width: 1200px)';
+
+/* ==============================================
+   website base styles
+   ============================================== */
+
+* {
+    position: relative;
+}
+
+// set height to 100% to get full screen images
+html, body {
+    height: 100%;
+    font-weight: 500;
+    line-height: 1.25;
+    overflow: visible;
+
+    @media @smallOnly {
+        font-size: 13px;
+    }
+
+    @media @large {
+        font-size: 17px;
+    }
+}
+
+h1 {
+    margin: 1rem auto 1rem;
+    font-size: 2rem;
+    font-weight: 400;
+    color: white;
+}
+
+input[type=email] {
+    font-weight: 500;
+}
+
+.page-container {
+    position: relative;
+    height: 100vh;
+    min-height: 400px;
+    padding: 0 1.5rem 0 1.5rem;
+    background: url('@{websitePath}/website-bg.jpg') no-repeat 50% 0;
+    background-size: cover;
+    // set overflow auto to prevent collapsing margin's
+    overflow-x: initial;
+    transition: height 99999s ease;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.75);
+        z-index: @layer0;
+    }
+}
+
+.logo {
+    position: relative;
+    width: 3.75rem;
+    display: block;
+    margin: 0 auto;
+}
+
+/* ==============================================
+   header
+   ============================================== */
+
+header[role=banner] {
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    right: 0;
+
+    &.no-nav nav {
+        display: none;
+    }
+}
+
+/* ==============================================
+   onboarding section
+   ============================================== */
+
+.onboard {
+    display: block;
+    padding-top: 5rem;
+    max-width: 30rem;
+    height: 100vh;
+    margin: 0 auto;
+    text-align: center;
+    transition: height 99999s ease;
+
+    @media @smallOnly {
+        height: ~'calc(100vh - 2rem)';
+    }
+}
+
+section.register {
+    max-width: 24rem;
+    margin: 3rem auto 0 auto;
+    padding-top: 4rem;
+    transition: padding @animTime @physicsBezier;
+
+    @media @smallOnly {
+        margin-top: 2rem;
+        padding-top: 3rem;
+    }
+
+    &.active {
+        padding-top: 7rem;
+
+        button {
+
+            &.submit {
+                top: 3.5rem;    
+            }
+
+            &.collapse-register {
+                top: -2.5rem;
+                transform: rotate(0);
+            }
+        }
+
+        input {
+            transform: scale(1);
+        }
+    }
+
+    form {
+        position: static;
+    }
+
+    input {
+        position: absolute;
+        top: 0;
+        padding: .875rem;
+        border: none;
+        transform: scale(.8);
+        transition: transform @animTime ease .3s;
+    }
+
+    button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transition: top @animTime @physicsBezier, transform @animTime ease .3s, background @animTime ease, border @animTime ease;
+
+        &.submit {
+            left: 0;
+            width: 100%;
+            padding: .75rem;
+
+            &.success .icn-tick {
+                display: block;
+            }
+
+            &.loading {
+                
+                p {
+                    opacity: 0;
+                }
+
+                .spinner {
+                    display: block;
+                }
+            }
+
+            .icn-tick {
+                display: none;
+                position: absolute;
+                left: .5rem;
+            }
+        }
+
+        &.loading {
+
+            p {
+                opacity: 0;
+            }
+
+            .spinner {
+                display: block;
+            }
+        }
+
+        &.collapse-register {
+            position: absolute;
+            right: 0;
+            padding-right: 0;
+            background: transparent;
+            border: none;
+            transform: rotate(45deg);
+        }
+
+        path {
+            fill: @bg-lightest;
+        }
+    }
+}
+
+/* ==============================================
+   article preview
+   ============================================== */
+
+.article-preview {
+    visibility: hidden;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 1rem;
+    text-align: left;
+    opacity: .5;
+    transform: translateY(.25rem);
+    transition: opacity @animTime ease, transform @animTime ease;
+    
+    // squidge content as much as possible if device isn't very tall
+    @media screen and (max-device-height: 650px) {
+        margin-bottom: 0rem;
+    }
+
+    &.show {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    h1 {
+        margin-bottom: 0;
+        padding: .5rem 0 .5rem 0;
+        border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
+    }
+
+    h4 {
+        margin: 0;
+        color: @bg-lightest;
+
+        @media @smallOnly {
+            font-weight: 400;
+        }
+    }
+
+    p {
+        margin: .5rem auto;
+        font-size: 1rem;
+        color: @text-light;
+        z-index: 100;
+        transition: color @animTime ease;
+    }
+
+    .preview {
+        display: inline-block;
+        float: left;
+        width: 100%;
+        cursor: pointer;
+
+        @media @medium {
+            width: 50%;
+        }
+
+        &:hover {
+
+            p {
+                color: lighten(@text-light, 15%);
+            }
+
+            &:before {
+                opacity: 1;
+            }
+        }
+        
+        &:before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: @bg-lightest;
+            opacity: .2;
+            transition: width @animTime ease, opacity @animTime ease;
+
+            @media @medium {
+                opacity: 0;
+            }
+        }
+    
+        &:nth-of-type(odd) {
+            padding: 1rem 1rem 1rem 0;
+            border-right: none;
+
+            @media @medium {
+                padding-right: 1rem;
+                border-right: 1px rgba(255, 255, 255, 0.2) solid;
+            }
+        }
+
+        &:nth-of-type(even) {
+            padding: 1rem 0 0 0;
+
+            // hide second article for devices that aren't very tall
+            @media screen and (max-device-height: 650px) {
+                display: none;
+            }
+
+            @media @medium {
+                padding-left: 1rem;
+            }
+        }
+    }
+}
+
+/* ==============================================
+   social links
+   ============================================== */
+
+.social-links {
+    max-width: 30rem;
+    margin: 3rem auto auto auto;
+    clear: both;
+    border-top: 1px rgba(255, 255, 255, .2) solid;
+    border-bottom: 1px rgba(255, 255, 255, .2) solid;
+
+    @media @medium {
+        display: flex;
+    }
+
+    a {
+        padding: 1rem 0 1rem 0;
+        -webkit-font-smoothing: auto; // prevents font bug in webkit
+
+        body:not(.ie9) & {
+
+            @media @medium {
+                width: 33.3%;
+                position: relative;
+                left: 0;
+                float: none;
+                transform: translateX(0);
+            }    
+        }
+        
+        // use a floated layout for IE9 and mobile devices
+        &:first-of-type {
+            float: left;
+        }
+
+        &:last-of-type {
+            float: right;
+        }
+
+        &:nth-of-type(2) {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) translate3d( 0, 0, 0);
+        }
+
+        .ie9 & {
+            padding: 1rem;
+        }
+
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: -1px;
+            right: 0;
+            width: 100%;
+            height: 1px;
+            background: white;
+            opacity: 0;
+            transition: opacity @animTime ease;
+        }
+
+        &:hover {
+
+            &:after {
+                opacity: 1;
+            }
+
+            sub {
+                color: lighten(@text-light, 15%);
+            }
+        }
+    }
+
+    svg {
+        display: block;
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+    }
+
+    path {
+        fill: @bg-lightest;
+    }
+
+    sub {
+        display: block;
+        margin-top: .25rem;
+        color: @text-light;
+        text-align: center;
+        transition: color @animTime ease;
+    }
+}
+
+/* ==============================================
+   site footer
+   ============================================== */
+
+footer[role="contentinfo"] {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    background: @bg-darkest;
+    // covers up left and right space caused by page padding
+    // box-shadow: -1.75rem 0 0 0 @bg-darkest, 1.75rem 0 0 0 @bg-darkest;
+    // set overflow to anything other than 'initial' or
+    // 'visible' to avoid collapsing margins
+    overflow: auto;
+}
+
+
+/* ==============================================
+   contact information
+   ============================================== */
+
+.sign-up {
+    position: relative;
+    margin: 4rem auto;
+    padding: 1rem;
+    transition: all .5s ease;
+}
+
+.sign-up.hide {
+    transform: translateY(10px);
+    transform: scale(0.95);
+    opacity: 0;
+}
+
+.sign-up form {
+    max-width: 22rem;
+    margin: 0 auto;
+}
+
+.sign-up input[type=email] {
+    display: none;
+    margin-bottom: .94rem;
+}
+
+.sign-up input[type=email].show {
+    display: block;
+}
+
+.sign-up button.submit {
+    margin: 0 auto;
+    width: 8rem;
+}
+
+.sign-up button.submit.wide {
+    width: 100%;
+}
+
+.sign-up h1 {
+    margin-bottom: 0;
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+    color: white;
+}
+
+.sign-up h2 {
+    margin-top: 0;
+    font-size: 1rem;
+}
+
+/* ==============================================
+   contact page
+   ============================================== */
+
+section.contact-form {
+    display: none;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 22rem;
+    opacity: 0;
+    transition: all .5s ease;
+    transform: translateY(10px);
+    transform: scale(0.9);
+}
+
+section.contact-form.show {
+    display: block;
+}
+
+section.contact-form.fadein {
+    opacity: 1;
+    transform: translateY(0);
+    transform: scale(1);
+}
+
+.contact-form label {
+    display: block;
+    margin-top: .5rem;
+}
+
+.contact-form textarea {
+    height: 5.5rem;
+}
+
+.contact-form button.submit.sent:before {
+    content: 'sent';
+}
+
+/* ==============================================
+   terms of use
+   ============================================== */
+
+.terms {
+    width: 90%;
+    max-width: 44rem;
+    height: 60%;
+    margin: 10% auto;
+    padding: 1rem;
+    background: whitesmoke;
+    border-radius: 2px;
+    color: #333;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.terms h2 {
+    color: inherit;
+    font-size: 1.5rem;
+}
+
+.terms h3 {
+    font-size: 1.2rem;
+}
+
+.terms em {
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* ==============================================
+   micro modules
+   ============================================== */
+
+.error {
+    display: none;
+    margin-top: .25rem;
+    min-height: 2rem;
+    list-style-type: none;
+    font-size: .875rem;
+    text-align: left;
+    opacity: .5;
+    transition: opacity @animTime ease;
+
+    &.show {
+        display: block;
+        opacity: 1;
+    }
+
+    &:before {
+        margin-top: -16px;
+        font-size: 1.25rem;
+        line-height: .875;
+    }
+
+    &:after {
+        top: -2px;
+    }
+}
+
+a.soft-link {
+    display: block;
+    margin-top: 1px;
+    padding: 1.25rem;
+    color: @text-light;
+    text-align: center;
+
+    &:hover .icn-arrow-right-small,
+    &:hover .icn-arrow-right-small {
+        right: -1.75rem;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    span {
+        padding: 1px;
+        color: @bg-lightest;
+        border-bottom: 1px @bg-lightest solid;
+    }
+
+    .icn-arrow-right-small {
+        position: absolute;
+        width: 12px;
+        height: 19px;
+        visibility: hidden;
+        opacity: 0;
+        right: -1.25rem;
+    }
+
+    path {
+        fill: @bg-lightest;
+    }
+}
+
+.boring-bits {
+    margin-top: 1rem;
+    display: block;
+    overflow: auto;
+    line-height: 1.5;
+    text-align: center;
+    
+    h4 {
+        margin: .25rem 0;
+        color: @bg-lightest;
+    }
+
+    a {
+        display: block;
+        color: @text-light;
+        transition: color @animTime ease;
+
+        &:hover {
+            color: @bg-lightest;
+        }
+    }
+}
+
+.error input[type="email"] {
+    background: #e74c3c !important;
+}
+
+.error label:after {
+    content: ' - not a real e-mail address!';
+}
+
+/* ==============================================
+   mailchimp
+   ============================================== */
+div#mc_embed_signup {
+    background: transparent;
+}
+div#mc_embed_signup form {
+    max-width: 21rem;
+    padding: 0;
+}
+
+div#mc_embed_signup form input[type=email]#mce-EMAIL:hover,
+div#mc_embed_signup form input[type=email]#mce-EMAIL:focus {
+    background: #4d4e52;
+}
+.mc-error {
+    background: #e74c3c !important;
+}

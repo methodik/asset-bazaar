@@ -1,0 +1,303 @@
+ /* ==============================
+	item card
+   ============================== */
+
+.item-card {
+	position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+	transition: height @animTime ease, transform @animTime ease, opacity .1s ease;
+
+    @media @medium {
+        width: ~'calc(50% - .375rem)';
+    }
+    
+    // alter styling when item card is shown in modal
+    .modal & {
+        margin-bottom: 0;
+        border-bottom: @border-width whitesmoke solid;
+
+        @media @medium {
+            width: 100%;
+        }
+
+        @media @large {
+            width: 802px;
+        }
+
+        .img-container {
+            padding-bottom: 0;
+            background: @bg-light;
+            border-top: @border-width #f5f5f5 solid;
+        }
+
+        img {
+            position: relative;
+            padding-bottom: 0;
+            border-radius: 0;
+
+            &.ar-below {
+                display: block;
+                margin: 0 auto;
+                width: auto;
+                max-height: 28.5rem;
+                transform: translatey(0);
+
+                @media @small {
+                    max-height: none;
+                    width: 100%;
+                }
+            }
+
+            &.ar-above {
+                width: 100%;
+
+                @media @large {
+                    width: 802px; // prevents Chrome transition bug that moves img around slightly
+                }
+            }
+        }
+    }
+
+    .img-container {
+        position: relative;
+        padding-bottom: 75%;
+        border-radius: 2px;
+        overflow: hidden;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    img {
+        position: absolute;
+        width: 100%;
+        background: @bg-light;
+        color: @bg-light;
+
+        &.ar-below {
+            width: 100%;
+            top: 50%;
+            transform: translatey(-50%);
+        }
+
+        &.ar-above {
+            height: 100%;
+            width: auto;
+            left: 50%;
+            transform: translatex(-50%);
+        }
+    }
+
+    &.promoted {
+        width: 100%;
+    }
+
+    .promoted-label {
+        position: absolute;
+        top: .875rem;
+        left: .875rem;
+        padding: .25rem .875rem;
+        border-radius: @border-radius;
+        background: @bg-dark;
+        color: @bg-lightest;
+        font-size: 11px;
+        font-weight: @fontweight-med;
+        line-height: 1.5;
+        z-index: @layer1;
+
+        .modal & {
+
+            @media @large {
+                top: 2rem;
+                left: 2rem;
+            }
+        }
+    }
+
+    .close {
+        position: absolute;
+        top: .25rem;
+        right: .25rem;
+        padding: .5rem;
+        width: 42px;
+        height: 42px;
+        background: @bg-darkest;
+        border-radius: @border-radius * 1.5;
+        
+        svg {
+            width: 21px;
+            height: 21px;
+            margin-top: 2px;
+        }
+
+        path {
+            fill: @bg-lightest;
+        }
+    }
+
+    button.delete-me {
+        display: none;
+    }
+
+	&.liked {
+
+		svg path {
+			fill: @accent-error;
+		}
+	}
+
+    .edit-mode & {
+        animation-name: spaceboots;
+        animation-duration: 1s;
+        transform-origin:50% 50%;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        &.hide {
+            display: none !important;
+        }
+
+        &.scale-out {
+            transform: scale(.3);
+            opacity: 0 !important;
+        }
+
+        .hevnly-icon {
+            display: none;
+        }
+
+        button.delete-me {
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            height: 7rem;
+            width: 7rem;
+            margin-right: -3.5rem;
+            margin-top: -3.5rem;
+            padding: 0;
+            background: rgba(0, 0, 0, 0.75);
+            border: none;
+            border-radius: 50%;
+            transition: transform @animTime ease, background @animTime ease;
+            z-index: @layer1;
+
+            &.scale-out {
+                transform: scale(.3);
+                opacity: 0 !important;
+            }
+
+            &.hide {
+                display: none;
+            }
+
+            &:hover {
+                background: @bg-darkest;
+            }
+
+            .icn-cross {
+                width: 45px;
+                height: 45px;
+                margin-top: 4px;
+
+                path {
+                    fill: #ffffff;
+                }
+            }
+        }
+    }
+
+	.hevnly-icon {
+        position: absolute;
+        width: 51px;
+        height: 51px;
+        background: rgba(0, 0, 0, .2);
+        bottom: 2.25rem;
+        left: 50%;
+        margin: 0 0 0 -25px;
+        padding: 0;
+        border-radius: 50%;
+        border: none;
+        font-size: 1rem;
+        transition: background @animTime ease, transform @animTime ease, opacity @animTime ease;
+        z-index: @layer0;
+
+        &:hover {
+            background: rgba(0, 0, 0, .4);
+            cursor: pointer;
+        }
+
+        svg {
+            width: 25px;
+            height: 25px;
+	        margin-top: 7px;
+	    }
+    }
+
+    footer {
+    	position: relative;
+    	padding: .75rem 0 .6rem 1.5rem;
+        font-size: .875rem;
+
+        @media @large {
+            padding-left: 1.1rem;
+        }
+
+        .modal & {
+            padding-left: 1.875rem;
+            border-bottom: 1px @border-color-light solid;
+
+            @media @large {
+                padding-left: 3.5rem;
+            }
+        }
+
+    	.icn-hevnly-heart {
+            position: absolute;
+            top: .6rem;
+            left: -.1rem;
+			width: 18px;
+	   		height: 18px;
+            cursor: default;
+
+            @media @large {
+                top: .55rem;
+                width: 18px;
+                height: 23px;
+            }
+
+            .modal & {
+                left: .3rem;
+                top: .7rem;
+                width: 15px;
+                height: 15px;
+
+                @media @large {
+                    left: 2rem;
+                    top: .6rem;
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+    	}
+
+        span {
+            display: inline-block;
+            position: relative;
+            height: 1rem;
+            line-height: 1rem;
+        }
+
+        .num {
+            padding-right: 1rem;
+        }
+
+        .share {
+            cursor: pointer;
+
+            &:hover {
+                border-bottom: @border-width @bg-dark solid;
+            }
+        }
+    }
+}

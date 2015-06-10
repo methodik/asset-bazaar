@@ -1,0 +1,127 @@
+/* global */
+@import 'main/normalise.less';
+@import 'main/vars.less';
+@import 'main/mixins.less';
+@import 'main/basic.less';
+@import 'main/buttons.less';
+@import 'main/icons.less';
+@import 'main/header.less';
+@import 'main/nav.less';
+@import 'main/notifications.less';
+@import 'main/search.less';
+@import 'main/secondary-nav.less';
+@import 'main/tertiary-nav.less';
+@import 'main/add-item.less';
+@import 'main/item-card.less';
+@import 'main/login.less';
+
+/* ecommerce modules */
+@import 'main/add-to-cart.less';
+@import 'main/delivery-details.less';
+@import 'main/crud.less';
+@import 'main/key-value-pair.less';
+ 
+/* controller files */
+@import 'main/off-canvas.less';
+
+/* profile */
+@import 'main/profile.less';
+@import 'main/profile-header.less';
+@import 'main/user-card.less';
+
+/* discovery */
+@import 'main/discovery.less';
+@import 'main/modal.less';
+@import 'main/comments.less';
+
+/* settings */
+@import 'main/settings.less';
+
+/* docs */
+@import 'main/docs.less';
+
+/* internal tools */
+@import 'main/product-matrix-tool.less';
+
+/* animations */
+@import 'main/anims.less'; // must be here to avoid clash with media queries
+@import 'main/spinner.less';
+
+/* datatables */
+@import 'main/datatable.css';
+
+.coming-soon {
+	color: @text-light;
+	text-align: center;
+
+	h1& {
+		width: 100%;
+		font-size: 3rem;
+		font-weight: @fontweight-light;  
+		line-height: 1;
+		text-align: center;
+	}
+
+	p& {
+		align-self: clear;
+		max-width: 25rem;
+		margin: 0 auto;
+		color: @text-med;
+		line-height: 1.5;
+	}
+
+	button&, a& {
+		.btn('back');
+		display: block;
+		width: 13rem;
+		margin: 7rem auto 0;
+		padding-left: 2rem;
+		background: none;
+		border: none;
+
+		.icn-arrow-left {
+			left: 1.2rem;
+		}
+
+		&:hover {
+
+			.icn-arrow-left {
+				left: 1rem;
+			}
+		}
+	}
+}
+
+.load-more-items {
+	position: fixed;
+	bottom: -3rem;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 3rem;
+	background: @bg-dark;
+	box-shadow: 0 5px 0 5px @bg-dark;
+	transition: bottom @animTime @physicsBezier;
+	z-index: @layer5;
+
+	&.show {
+		bottom: 0rem;
+
+		.spinner {
+			display: block;
+		}
+	}
+}
+
+#environment {
+	display: none;
+	visibility: hidden;
+
+	@media @medium {
+		visibility: collapse;
+	}
+
+	@media @large {
+		visibility: visible;
+	}
+}

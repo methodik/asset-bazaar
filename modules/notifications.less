@@ -1,0 +1,112 @@
+.notifications-page {
+	.main-section-padding;
+	position: relative;
+	padding-top: 3rem;
+
+	.notifications-container {
+		max-width: 32rem;
+		margin: 0 auto;
+	}
+
+	.settings-btn {
+		position: absolute;
+		right: .5rem;
+		top: 1.5rem;
+		color: @text-med;
+	}
+
+	h3 {
+		font-weight: @fontweight-med;
+	}
+}
+
+.notifications {
+	.row-block-parent('large');
+	
+	&.preview {
+		.row-block-parent('preview');
+		margin-top: 0;
+		opacity: 0;
+		transform: scale(.7);
+
+		li {
+			.row-block-child('dark');
+
+			&.new {
+				box-shadow: inset 2px 0 0 darken(@accent-link, 10%);
+				background: lighten(#221f20, 10%);
+			}
+
+			&.no-content {
+				padding: 0;
+
+				p {
+					width: 100%;
+					max-width: none;
+					padding-top: 1rem;
+					text-align: center;
+				}
+
+				time {
+					display: none;
+				}
+
+				img {
+					display: none;
+				}
+			}
+
+			a p {
+				color: @border-color-med;
+			}
+		}
+
+		&.show {
+			display: block;
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	@media @large {
+		margin-top: .3rem;
+	}
+
+	li {
+		.row-block-child('light');
+	}
+
+	.row-block-child-children('');
+}
+
+// if there are no notifications, hide the indicator
+[data-inline-counter="0"]:before,
+// hide the indicator on the navicon when the offcanvas nav is open
+[data-inline-counter].navicon.active:before {
+	display: none;
+}
+
+[data-inline-counter]:before {
+	content: attr(data-inline-counter);
+	position: absolute;
+	left: 1.25rem;
+	top: .75rem;
+	width: 1rem;
+	height: 1rem;
+	background: @accent-error;
+	border-radius: 50%;
+	font-size: .6rem;
+	text-align: center;
+	color: @bg-lightest;
+	z-index: @layer1;
+
+	header[role=banner] & {
+		left: 2rem;
+		top: 1rem;
+
+		@media @large {
+			left: 3.8rem;
+			top: 1.7rem;
+		}
+	}
+}

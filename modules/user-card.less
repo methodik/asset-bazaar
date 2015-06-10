@@ -1,0 +1,72 @@
+/* ==============================
+	profile page
+   ============================== */
+
+article.user-card {
+	.shadow();
+	position: relative;
+	width: 100%;
+	min-height: 6rem;
+	margin-bottom: 1rem;
+	padding: 0 5rem .5rem 5rem;
+	background: @bg-lightest;
+	float: left;
+
+	&:nth-of-type(2n) {
+		float: right;
+	}
+
+	@media @medium {
+		padding-left: 6rem;
+	}
+
+	@media @large {
+		width: ~'calc(50% - .375rem)';
+		padding-left: 5rem;
+	}
+
+	.profile-photo {
+		position: absolute;
+		left: 1rem;
+		top: 1rem;
+		width: 3rem;
+
+		@media @medium {
+			width: 4rem;
+		}
+
+		@media @large {
+			width: 3rem;
+		}
+	}
+
+	*:not(.spinner) {
+		margin: 0;
+	}
+
+	h4 {
+		padding: 1rem 0 .5rem 0;
+		font-size: 1.2rem;
+		font-weight: @fontweight-med;
+		color: @text-dark;
+	}
+
+	p {
+		color: @text-light;
+		font-size: .86rem;
+		line-height: 1.13rem;
+		padding-bottom: .5rem;
+	}
+
+	button {
+		.btn('sticky');
+
+		span {
+			transition: opacity @animTime ease;
+		}
+
+		&.loading span:first-of-type {
+			opacity: 0 !important;
+		}
+	}
+}

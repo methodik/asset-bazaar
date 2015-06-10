@@ -1,0 +1,27 @@
+/* ==============================
+	key value pair
+   ============================== */
+
+.key-value-pair {
+	margin: 1.5rem .5rem;
+	color: @text-med;
+
+	@media @large {
+		max-width: 32rem;
+		margin: 1.5rem auto;
+	}
+
+	dt {
+		float: left;
+		font-weight: 500;
+
+		&:after {
+			content: ':';
+		}
+	}
+
+	dd {
+		display: inline;
+		margin-left: 1rem;
+	}
+}

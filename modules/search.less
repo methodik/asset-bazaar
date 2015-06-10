@@ -1,0 +1,394 @@
+/* search bar */
+
+span.search-bar {
+	font-size: 15px;
+	position: relative;
+	display: block;
+	height: 2.5em;
+
+	&:hover {
+
+		input[type=search] {
+			border-color: lighten(@text-med, 7%);
+		}
+
+		.search-submit {
+			background: lighten(@text-med, 7%);
+			border-color: lighten(@text-med, 7%);
+		}
+	}
+
+	label {
+		visibility: hidden;
+		position: absolute;
+		top: -400px;
+		right: -400px;
+	}
+
+	svg {
+		position: absolute;
+
+		ellipse, line {
+			stroke: @bg-lightest;
+		}
+
+		path {
+			fill: @bg-lightest;
+		}
+	}
+
+	svg.icn-cross {
+		right: .75em;
+		top: .5em;
+		width: 15px;
+		height: 15px;
+		pointer-events: none;
+
+		path {
+			pointer-events: none;
+		}
+	}
+
+	svg.icn-magnify {
+		position: absolute;
+		right: .875em;
+		top: .6em;
+		width: 17px;
+		height: 17px;
+	}
+
+	.cross {
+		position: absolute;
+		top: .2em;
+		bottom: 0;
+		right: 3em;
+		width: 2.6em;
+		height: 2em;
+		cursor: pointer;
+		background: @bg-dark;
+
+		&:before {
+			content: '';
+			position: absolute;
+			top: .55em;
+			width: 1px;
+			height: 1em;
+			background: @text-med;
+			left: .25em;
+		}
+	}
+	
+	input[type=search] {
+		-webkit-appearance: none;
+		height: 2.5em;
+		padding: .12em 0 .12em .5em;
+		background: transparent;
+		outline: none;
+		border: 2px @text-med solid;
+		border-radius: @border-radius;
+		font-size: 1em;
+		font-family: inherit;
+		font-weight: 400 !important; // !important sorts out Chroms being indecisive about what to do.
+		color: white;
+		transition: border @animTime ease, color @animTime ease;
+		
+		// get rid of all shadow DOM styling
+		&::-webkit-search-decoration,
+		&::-webkit-search-cancel-button,
+		&::-webkit-search-results-button,
+		&::-webkit-search-results-decoration {
+  			display: none;
+		}
+	
+		// cover up webkit autofil styling wih a box-shadow,
+		// to get rid of that horrid yellow colour.
+		&:-webkit-autofill {
+			box-shadow: inset @bg-dark 13em 0 0;
+			color: @bg-lightest !important;
+
+			&:focus {
+				color: @bg-lightest !important;
+			}
+		}
+
+		&:focus {
+			border-color: @text-light;
+
+			+ .search-submit {
+				border-color: @text-light;
+				background: @text-light;
+			}
+		}
+	}
+
+	.search-submit {
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		width: 3em;
+		padding: 0; // overrides default button styling
+		border-color: @text-med;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		background: @text-med;
+
+		p {
+			display: none;
+		}
+	}
+}
+
+// for mouse devices, hide the search bar in the offcanvas nav
+.off-canvas.left .searchapp {
+
+	@media @large {
+		display: none;	
+	}
+}
+
+.off-canvas.left .search-results {
+
+	@media @large {
+		display: none;	
+	}
+}
+
+/* == search results == */
+.search-results {
+	margin-top: 2.8rem;
+
+	section {
+		position: relative;
+		min-height: 6rem;
+		margin-top: 2.5rem;
+		transition: opacity @animTime ease, min-height @animTime ease;
+		list-style-type: none;
+		position: relative;
+		width: 100%;
+		width: 17.65rem; // set explicitly to override nav padding
+		margin: 0 0 0 -.666rem; // pulls preview out of view
+		padding: 0;
+		border-top: 1px @bg-light solid;
+
+		&.search-finished {
+
+			> .spinner {
+				display: none;
+			}
+
+			&.no-results {
+
+				.noresults {
+					display: block;
+				}
+
+				.more {
+					display: none;
+				}
+			}
+		}
+
+		&.search-started {
+			min-height: 6rem !important;
+
+			.spinner {
+				display: block;
+			}
+
+			.results {
+				display: none;
+			}
+		}
+
+		&.no-results {
+			min-height: 2rem;
+		}
+
+		.spinner {
+			margin-top: -2rem;
+		}
+
+		.noresults {
+			display: none;
+			padding: .75rem;
+			margin-bottom: 2rem;
+
+			.search-finished & {
+				display: block;
+			}
+		}
+
+		h3 {
+			position: absolute;
+			top: -1.75rem;
+			left: .75rem;
+			font-size: .75rem;
+			color: @bg-lightest;
+			margin: .25rem auto;
+		}
+	}
+
+	.results {
+		width: 100%;
+
+		&.items {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-items: flex-start;
+			padding: 10px 12px 2rem 10px;
+		}
+
+		> div {
+			.row-block-child('dark');
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+
+			&:last-of-type {
+				margin-bottom: 2rem;
+			}
+
+			&:hover img {
+				opacity: 1;
+			}
+
+			&.user {
+				.row-block-child-children('');
+
+				button span {
+					color: @bg-lightest;
+				}
+			}
+
+			&.post {
+				.row-block-child-children('bigimage');
+				width: 48%;
+				border-radius: @border-radius;
+
+				&:last-of-type {
+					margin-bottom: 2rem;
+				}
+			}
+		}
+	}
+
+	.more {
+		display: none;
+		margin: 0 auto;
+		margin-bottom: 2rem;
+
+		.search-finished &,
+		.search-success & {
+			display: block;
+		}
+	}
+
+	.absolutely-no-result {
+		display: none;
+
+		p {
+			line-height: 1;
+
+			span {
+				font-size: inherit;
+				color: inherit;
+			}
+
+			&:first-of-type {
+				font-size: 1.5rem;
+				font-weight: 500;
+			}
+
+			&:nth-of-type(2) {
+				margin-top: 1rem;
+			}
+		}
+	}
+
+	.no-results + .no-results + div.absolutely-no-result {
+		display: block;
+	}
+
+	.search-started + div.absolutely-no-result {
+		display: none !important;
+	}
+
+	.no-results {
+		opacity: .3;
+	}
+
+	.follow {
+		.btn('cta');
+		position: absolute;
+		top: 50%;
+		right: 1rem;
+		padding: 0 .5rem;
+		transform: translatey(-50%);
+		font-size: 11px;
+		
+		span {
+			color: @bg-lightest;
+
+			&.hide {
+				opacity: 0;
+			}
+		}
+
+		.spinner {
+			height: 1.25rem;
+			width: 1.25rem;
+			margin-top: -.65rem;
+			margin-left: -.65rem;
+		}
+	}
+
+	.icn-arrow-right-small {
+		width: 10px !important;
+		height: 10px !important;
+		position: absolute;
+		right: 1rem;
+		top: 50%;
+		transform: translatey(-50%);
+
+		path {
+			fill: @bg-med;
+		}
+	}
+}
+
+.search-results {
+	display: none;
+}
+
+.search-enabled {
+
+	@media @large {
+		display: block;
+	}
+
+	.search-results {
+		display: block;
+	}
+}
+
+.search-feedback {
+	position: relative;
+	transform: translatey(7rem);
+	width: 100%;
+	
+	.search-message {
+		display: none;
+		text-align: center;
+  
+		@media @large {
+			display: block;
+		}
+
+		&.hide {
+			display: none;
+		}
+	}
+}

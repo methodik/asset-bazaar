@@ -1,0 +1,271 @@
+/* ==============================
+	profile header
+   ============================== */
+
+header.profile {
+    position: relative;
+    padding-bottom: .5rem;
+    height: 16rem;
+    background: url('../images/defaults/profileBackground.jpg');
+    background-size: 100% auto;
+    background-position: 50% 50%;
+    overflow: hidden;
+    transition: background @animTime ease;
+
+    @media @medium {
+        height: 23rem;
+    }
+
+    &.show-secondary-view {
+        background-size: 175% auto;
+
+        div.slider {
+            margin-left: -100%;
+        }
+    }
+
+    button.edit {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .slider {
+        width: 200%;
+        transition: all .3s ease;
+
+        @media @large {
+            display: flex;
+            max-width: 47rem;
+            margin: 0 auto;
+        }
+    }
+
+    [class^="view-"] {
+    	position: relative;
+        display: inline-block;
+        width: 50%;
+        height: 16rem;
+
+        @media @medium {
+            height: 23rem;
+        }
+    }
+
+    .view-main {
+        float: left;
+
+        @media @large {
+            width: 9rem;
+            padding-top: 3.7rem;
+        }
+    }
+
+    .view-secondary {
+        float: right;
+        color: white;
+
+        @media @large {
+            width: 60%;
+            color: inherit;
+        }
+    }
+
+    .profile-photo {
+        display: block;
+        position: relative;
+        padding: 2.75rem 1rem 1rem 1rem;
+        width: 5.5rem;
+        margin: 0 auto;
+
+        @media @medium {
+            width: 7.5rem;
+            padding: 2rem 1rem 2.5rem 1rem;
+        }
+
+        @media @large {
+            margin-left: 0;
+            padding: 0 1rem 1rem 0;
+        }
+
+        img {
+            .shadow();
+            display: block;
+            width: 100%;
+            border-radius: @border-radius;
+
+            @media @large {
+                width: 6rem;
+            }
+        }
+    }
+
+    .follow-indicator {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        padding: .15rem .25rem;
+        background: @bg-dark;
+        border-radius: @border-radius;
+        opacity: .875;
+        font-size: 11px;
+        color: @bg-lightest;
+
+        @media @large {
+            position: relative;
+            top: .5rem;
+            right: auto;
+        }
+    }
+
+    h4 {
+        margin-top: 0;
+        font-size: 1.25rem;
+        text-align: center;
+        font-weight: @fontweight-reg;
+
+        @media @large {
+            cursor: text;
+            z-index: @layer4;
+            position: absolute;
+            left: 9rem;
+            top: 3.5rem;
+            width: 100%;
+            text-align: left;
+            font-weight: @fontweight-med;
+        }
+    }
+
+    button.follow {
+        .btn('cta');
+    }
+
+    a.button {
+        .btn('normal');
+    }
+
+    a.button, button.follow {
+        position: absolute;
+        left: 50%;
+        bottom: 1.5rem;
+        text-align: center;
+        transform: translatex(-50%);
+
+        @media @medium {
+            bottom: 3rem;
+        }
+
+        @media @large {
+            display: block;
+            position: relative;
+            width: 6rem;
+            left: 0;
+            bottom: 0;
+            transform: translatex(0);
+        }
+    }
+
+    .bio {
+        width: 80%;
+        margin: 3rem auto;
+        font-size: 1rem;
+        line-height: 1.5;
+        text-align: center;
+
+        @media @small {
+            position: absolute;
+            left: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            margin: 0;
+            padding: 0;
+        }
+
+        @media @medium {
+            width: 60%;
+            margin-top: 7rem;
+        }
+
+        @media @large {
+            width: auto;
+            margin: 6rem 0 1rem 0;
+            text-align: left;
+        }
+    }
+
+    .socials {
+        display: none; // hide until we know if we're definitely including social icons here.
+        width: 60%;
+        margin: 1rem auto;
+
+        a {
+            text-decoration: none;
+        }
+    }
+
+    .location {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        margin-left: -.5rem;
+        width: 100%;
+        height: 2rem;
+
+        @media @large {
+            justify-content: flex-start;
+            margin-left: -.2rem;
+        }
+
+        span {
+            padding-top: .3rem;
+            padding-left: .5rem;
+            font-weight: @fontweight-med;
+
+            @media @large {
+                font-size: .86rem;
+            }
+        }
+
+        .icn-location path {
+            fill: @bg-lightest;
+
+            @media @large {
+                fill: @text-med;
+            }
+        }
+    }
+
+    [class^="icn-arrow-"] {
+        position: absolute;
+        top: 50%;
+        width: 40px;
+        height: 40px;
+        margin-top: -16px;
+        color: white;
+        opacity: .3;
+
+        @media @large {
+            display: none;
+        }
+
+        &.right {
+            right: .5rem;
+            padding: 8px 0 8px 8px;
+        }
+
+        &.left {
+            left: .5rem;
+            padding: 8px 8px 8px 0;
+        }
+
+        &.available {
+            opacity: 1;
+            cursor: pointer;
+            z-index: 300;
+        }
+
+        path {
+        	fill: @bg-lightest;
+        }
+    }
+}

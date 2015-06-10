@@ -1,0 +1,68 @@
+/* ==============================
+	secondary nav
+   ============================== */
+
+nav.page-content-nav {
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	width: 100%; 
+	height: 3.33rem;
+	background: @bg-lightest;
+	border-bottom: @border-color-med @border-width solid;
+
+	&.hide {
+		display: none;
+	}
+	
+	&.add-item {
+		display: none;
+
+		&.show {
+			display: flex;
+		}
+	}
+
+	&.settings-nav {
+		background: transparent;
+	}
+	
+	button {
+		height: 100%;
+		margin: 0 1.5rem;
+		padding: .75rem;
+		background: transparent;
+		border-radius: 0;
+		color: @bg-med;
+		line-height: 1.875rem;
+		border: none;
+		border-bottom-width: 0px;
+		border-bottom-style: solid;
+		border-bottom-color: @bg-lightest;
+		transition: border .1s ease, color @animTime ease;
+
+		@media @small {
+			margin: 0 .5rem;
+		}
+
+		&:hover {
+			border-bottom-color: @bg-med;
+			border-bottom-width: 2px;
+		}
+
+		&.active {
+			color: @text-dark;
+			border-bottom-color: @accent-error;
+			border-bottom-width: 2px;
+		}
+
+		&.not-allowed {
+			cursor: default;
+
+			&:hover {
+				border-bottom-color: transparent;
+				border-bottom-width: 0px;
+			}
+		}
+	}
+}

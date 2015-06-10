@@ -1,0 +1,394 @@
+/* ==============================
+ 	add to basket
+   ============================== */
+
+.add-to-cart-container {
+	padding: .5rem;
+	transition: padding @animTime ease;
+
+	@media @large {
+		padding: 1.5rem;
+	}
+
+	&.loading  {
+		position: relative;
+		padding-bottom: 5rem;
+
+		* {
+			visbility: hidden;
+			opacity: 0;
+		}
+
+		.spinner {
+			display: block;
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+
+	&.sold-out {
+
+		.add-to-cart {
+			display: none;	
+		}
+
+		.sold-out {
+			display: block;
+		}
+	}
+
+	.sold-out {
+		display: none;
+		margin-top: 0;
+		padding-left: .875rem;
+
+		&:after {
+			display: none;
+		}
+
+		&:before {
+			display: none;
+		}
+	}
+}
+
+.add-to-cart {
+	
+	.price-container {
+		position: relative;
+		border-radius: @border-radius;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		border: 1px @border-color-med solid;
+		border-bottom: none;
+	}
+
+	.total-price {
+		display: block;
+		padding: .75rem;
+		font-size: 1.33rem;
+
+		&:before {
+			content: '£';
+			margin-right: .25rem;
+		}
+	}
+
+	.quantity {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		width: 5rem;
+		max-height: 2.5rem;
+		height: 100%;
+		border-left: 1px @border-color-med solid;
+		transition: border @animTime ease;
+
+		.added-to-cart & {
+			border-left: 1px transparent solid;
+		}
+			
+		button {
+			position: relative;
+			padding: 0;
+			margin: 0;
+			width: 2.5rem;
+			height: 50%;
+			background: transparent;
+			border-radius: 0;
+			border: none;
+			transition: opacity @animTime ease;
+
+			&:hover {
+				background: @bg-light;
+
+				path {
+					fill: @bg-dark;
+				}
+			}
+
+			&.not-allowed {
+				cursor: not-allowed;
+				background: transparent !important; // set important so hover state never happens
+
+				path {
+					fill: @border-color-med !important;	
+				}
+			}
+			
+			// hide when an item has been added to cart
+			.added-to-cart & {
+				opacity: 0;
+				cursor: default;
+			}
+
+			&:first-of-type {
+				border-bottom: 1px @border-color-med solid;
+			}
+
+			svg {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				height: 12px;
+				width: 12px;
+				margin-top: -6px;
+				margin-left: -6px;
+				pointer-events: none;
+			}
+
+			path {
+				fill: @bg-med;
+			}
+		}
+
+		.quantity-indicator {
+			height: 100%;
+			width: 2.5rem;
+			border-left: 1px @border-color-med solid;
+			color: @text-med;
+			text-align: center;
+
+			&:before {
+				content: 'qty';
+				display: block;
+				width: 100%;
+				margin-bottom: .25rem;
+				font-size: .66rem;
+				color: @text-light;
+				text-align: center;
+			}
+		}
+	}
+
+	.btn-cart {
+		position: relative;
+		display: block;
+		width: 100%;
+		padding: .6rem;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+
+		&.close-state {
+			background: transparent;
+			border-color: @bg-med;
+			color: @text-dark;
+		}
+
+		svg {
+			position: absolute;
+			top: .5rem;
+			left: .5rem;
+		}
+		
+		line {
+			stroke: @bg-lightest;
+		}
+	}
+
+	.go-to-cart {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		height: 0;
+		padding: 0;
+		background: #f4f4f4;
+		transition: height @animTime ease, padding @animTime ease;
+	
+		// show loading state
+		&.loading {
+			height: 5rem;
+			padding: 1.5rem .5rem;
+			border-top: 1px @border-color-med solid;
+			overflow: hidden;
+			
+			div.spinner {
+				display: block;
+				margin-top: -1rem;
+			}
+			
+			// show buttons
+			&.done {
+
+				button {
+					opacity: 1;
+					transform: scale(1);
+					visibility: visible;
+				}
+
+				.spinner {
+					display: none;
+				}
+			} 
+		}
+
+		.spinner {
+			margin-top: 0;
+		}
+
+		button {
+			visibility: hidden;
+			width: 48.5%;
+			padding: 0;
+			opacity: 0;
+			transform: scale(0);
+			transition: transform @animTime @physicsBezier, opacity @animTime ease, background @animTime ease, border-color @animTime ease;
+		}
+
+		.buy-now {
+
+			.icn-arrow-right-small {
+				position: absolute;
+				right: .5rem;
+				top: .6rem;
+				width: 10px;
+				height: 10px;
+			}
+
+			path {
+				fill: @bg-lightest;
+			}
+		}
+	}
+}
+
+
+/* ==============================
+ 	product matrix
+   ============================== */
+
+.product-matrix {
+
+	.error {
+		display: none;
+		font-size: .875rem;
+
+		.show-error&, &.show {
+			display: block;
+		}
+	}
+}
+
+.product-matrix-input {
+	position: relative;
+	border-bottom: 1px @border-color-med solid;
+
+	// display a border to separate between the price & quantity
+	&:first-of-type {
+		border-top: 1px @border-color-med solid;
+	}
+	
+	// remove bottom border for last element
+	&:last-of-type {
+		border-bottom: none;
+	}
+
+	&:before {
+		content: attr(data-pm-label) ":";
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		font-size: .75rem;
+		color: @text-med;
+		opacity: 0;
+		transition: opacity @animTime ease, left @animTime ease;
+		pointer-events: none;
+
+		@media @small {
+			transform: translateY(-55%);
+		}
+		
+		// when an error is shown change the positioning of element
+		.show-error& {
+			top: 25%;
+		}
+	}
+
+	&:after {
+		content: 'choose';
+		display: block;
+		position: absolute;
+		top: 50%;
+		right: .75rem;
+		font-size: .75rem;
+		color: @accent-link;
+		cursor: pointer;
+		transform: translateY(-50%);
+		transition: opacity @animTime ease;
+		pointer-events: none;
+		
+		// account for browser differences in vertical positioning
+		@media @medium {
+			transform: translateY(-55%);
+		}
+
+		@media @small {
+			transform: translateY(-55%);	
+		}
+		
+		// hide when an element has been added to cart
+		.added-to-cart & {
+			opacity: 0;
+			cursor: default;
+		}
+
+		// when an error is shown change the positioning of element 
+		.show-error& {
+			top: 75%;
+		}
+	}
+
+	&.chosen {
+
+		&:before {
+			left: .75rem;
+			width: 4rem;
+			opacity: 1;
+		}
+
+		&:after {
+			content: 'change';
+			color: @text-med;
+
+			.show-error& {
+				color: @accent-link;
+			}
+		}
+
+		select {
+			padding-left: 5rem;
+		}
+	}
+
+	.error {
+		position: relative;
+		font-size: .75rem;
+
+		.show-error& {
+			display: block;
+		}
+	}
+
+	select {
+		margin-bottom: 1px; // to overcome another chrome hairline border bug
+		padding: .75rem;
+		border-radius: 0;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		        appearance: none;
+		border: none;
+		font-size: .75rem;
+		transition: padding @animTime ease;
+		cursor: pointer;
+
+		.added-to-cart & {
+			cursor: default;
+		}
+	}
+}

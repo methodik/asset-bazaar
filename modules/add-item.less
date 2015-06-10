@@ -1,0 +1,301 @@
+/* ==============================
+	add item
+   ============================== */
+
+// controller for showing and hiding main section tmpl
+main[role="main"] {
+
+	&.hide {
+		display: none;
+	}
+}
+
+.show-add-item-view:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: 4rem;
+	height: 4rem;
+	background: none;
+	z-index: 5000;
+	cursor: not-allowed;
+
+	@media @large {
+		width: 5.5rem;
+		height: 5.5rem;
+	}
+}
+
+.add-item-view {
+	.sc(2);
+	display: none;
+	padding-bottom: .5rem;
+
+	&.show {
+		display: flex;
+	}
+
+	.add-by-photo, .add-by-url {
+		margin: 0 auto;
+		padding: 1.73rem .66rem;
+		max-width: 36rem !important; // override .sc() mixin
+
+		&.show {
+			display: block;
+		}
+
+		h1 {
+			text-align: center;
+			color: @text-dark;
+			font-weight: 500;
+
+			@media @large  {
+				font-size: 2.25rem;
+				line-height: 1;
+			}
+		}
+	}
+
+	.add-by-url {
+		display: none;
+
+		&.hack-off {
+			display: block;
+		}
+	}
+
+	> *:first-of-type {
+		margin-top: 0 !important;
+	}
+
+	button {
+		margin-top: 1.73rem;
+
+		&.submit {
+			.btn('cta');
+			margin-top: 1.73rem; // override mixin
+			width: ~'calc(60% - .5rem)';
+			float: right;
+
+			&.loading {
+
+				p {
+					opacity: 0;
+				}
+
+				.spinner {
+					display: block;
+				}
+			}
+		}
+
+		&.cancel {
+			margin-right: 1rem;
+			width: ~'calc(40% - .5rem)';
+			float: left;
+		}
+	}
+
+	form {
+
+		@media @large {
+			display: inline-block;
+			float: right;
+			width: 59%;
+
+			label.product-name {
+				margin-top: 0;
+			}
+		}
+	}
+
+	.error span {
+		text-decoration: underline;
+	}
+}
+
+.choose-img-output {
+	position: relative;
+	width: 80%;
+	min-height: 3rem;
+	margin: 0 auto 2rem auto;
+
+	.change-img-container {
+		position: absolute;
+		bottom: -1.75rem;
+		right: -1.75rem;
+
+		&.hover {
+
+			button {
+				background: @text-dark;
+			}
+		}
+	}
+
+	@media @large {
+		display: inline-block;
+		float: left;
+		width: 34%;
+		margin: 0;
+	}
+
+	input[type=file] {
+		position: absolute;
+		top: 1.875rem;
+		height: 4rem;
+		width: 4rem;
+		opacity: 0;
+	}
+
+	button {
+		width: 4rem;
+		height: 4rem;
+		padding: 0;
+		background: @text-med;
+		border: none;
+		border-radius: 50%;
+		font-size: 11px;
+		z-index: @layer5;
+		opacity: 0;
+		transition: opacity @animTime ease;
+
+		@media @large {
+			width: 3rem;
+			height: 3rem;
+			bottom: -1.5rem;
+			right: -1.5rem;
+		}
+
+		&.show {
+			opacity: 1;
+		}
+	}
+}
+
+.add-by-photo {
+
+	h1 {
+		margin: .5rem auto 2.75rem auto;
+	}
+
+	#hevnly_item_mainImage {
+		display: none;
+	}
+
+	.submit {
+		position: relative;
+
+		&[disabled] {
+			opacity: .7;
+			cursor: not-allowed;
+
+			&:hover {
+				background: @accent-link;
+				border-color: @accent-link;
+			}
+		}
+	}
+
+	.cropped-image {
+		display: block;
+		margin: 0 auto 2rem auto;
+		max-width: 12rem;
+	}
+}
+
+.add-item-uploading-views {
+	display: none;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	color: @bg-lightest;
+	font-weight: 500;
+	text-align: center;
+	z-index: 5000;
+
+	@media @large {
+		top: 33%;
+		left: 50%;
+		right: auto;
+		bottom: auto;
+		width: 10rem;
+		height: 10rem;
+		transform: translate(-50%, -50%);
+	}
+
+	&.show {
+		display: block;
+	}
+
+	&.troubles {
+
+		.view-one {
+			display: none;
+		}
+
+		.view-two {
+			display: block;
+		}
+	}
+
+	[class^="view-"] {
+		width: 80%;
+		position: relative;
+		margin: 50% auto;
+		padding-top: 3rem;
+		text-align: center;
+
+		@media @large {
+			width: 100%;
+		}
+	}
+
+	.spinner {
+		top: 0;
+	}
+
+	.add-item-upload-message.secondary {
+		display: none;
+
+		&.show {
+			display: block;
+		}
+	}
+
+	button.cancel {
+		position: fixed;
+		width: 80%;
+		bottom: 2rem;
+		left: 10%;
+		right: 10%;
+		color: white;
+
+		@media @medium {
+			width: 15rem;
+			left: 50%;
+			transform: translateX(-50%);
+			bottom: 4rem;
+		}
+
+		@media @large {
+			position: absolute;
+			left: 50%;
+			bottom: -10rem;
+			top: auto;
+			right: auto;
+		}
+	}
+
+	.view-two {
+		display: none;
+
+		&.show {
+			display: block;
+		}
+	}
+}

@@ -1,0 +1,401 @@
+/* ==============================
+	header styles
+   ============================== */
+
+header[role=banner] {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 4rem;
+	left: 0;
+	background: @bg-lightest;
+	border-bottom: @border-width @border-color-light solid;
+	transition: right @physicsBezier, left @physicsBezier;
+
+	@media @large {
+		height: 5.5rem;
+		font-size: .75rem;
+		color: @text-med;
+	}
+	
+	span, a {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		padding: 13px;
+		z-index: @layer1;
+		cursor: pointer;
+
+		&:focus {
+			outline: none;
+		}
+ 
+		@media @large {
+			padding-top: 22px;
+		}
+	}
+
+	sub {
+		position: relative;
+		display: block;
+		bottom: .3rem;
+		font-size: .7rem; 
+		text-align: center;
+		transition: all @animTime ease;
+
+		@media @large {
+			bottom: -.3rem;
+			font-size: inherit;
+			color: @bg-med;
+		}
+	}
+
+	svg:not(#hevnly-symbol) {
+
+		@media @large {
+			display: block;
+		}
+	}
+
+	.symbol {
+		position: absolute;
+		left: 50%;
+		width: 4rem;
+		margin-left: -2rem;
+		padding-top: 1.33rem;
+		text-align: center;
+		z-index: 0;
+		transition: opacity @animTime ease, transform @animTime ease;
+
+		@media @large {
+			top: 0;
+			padding-top: 2rem;
+		}
+
+		&.hide {
+			opacity: 0;
+			transform: scale(.875);
+		}
+	}
+
+	.navicon {
+		left: 0;
+		padding: 17px 17px 17px 13px;
+		transition: background @animTime ease, padding @animTime ease;
+
+		@media @large {
+			padding: 33px 17px 17px 45px;
+		}
+
+		line {
+			transition: transform @animTime ease;
+		}
+
+		&:hover {
+
+			line {
+				stroke: @bg-darkest;
+			}
+		}
+	}
+
+	.profile {
+		display: none; // hide for touch devices
+		left: 6.58rem;
+		width: 6rem;
+
+		@media @large {
+			display: block; // show only for mouse devices
+		}
+
+		div {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			transform: translateY(-50%);
+			width: 3.5rem;
+			height: 3.5rem;
+			border-radius: @border-radius;
+			.shadow();
+			overflow: hidden;
+
+			&:before {
+				content: '';
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				background: rgba(0, 0, 0, 0);
+				border-radius: @border-radius;
+				transition: background @animTime ease;
+			}
+
+			&:hover {
+			
+				&:before {
+					background: rgba(0, 0, 0, 0.75);
+					z-index: 500;
+				}
+
+				p {
+					top: 50%;
+				}
+			}
+		}
+
+		img {
+			z-index: 200;
+		}
+
+		p {
+			display: block;
+			position: absolute;
+			width: 100%;
+			left: 0;
+			top: 115%;
+			margin: 0;
+			color: @bg-lightest;
+			text-align: center;
+			font-size: 1.25rem;
+			font-weight: 500;
+			transform: translateY(-50%);
+			z-index: 500;
+			transition: top @animTime ease;
+		}
+	}
+
+	.discover {
+		display: none; // hide for touch devices
+		left: 11.33rem;
+
+		@media @large {
+			display: block; // show for mouse devices only
+		}
+
+		&.active {
+
+			@media @large {
+				border-bottom: 2px @accent-error solid;	
+			}
+		}
+
+		svg {
+			display: block;
+			margin: 0 auto;  
+		}
+	}
+
+	.search {
+		display: none; // hide for touch devices
+		right: 6rem;
+		transition: opacity @animTime ease, transform @animTime ease;
+
+		@media @large {
+			display: block; // show for mouse devices only
+		}
+
+		&.hide {
+			opacity: 0;
+			transform: scale(.875);
+		}
+	}
+
+	.add {
+		right: 0;
+
+		@media @small {
+			padding: 11px 13px 13px 13px; // slightly move the icon up. 
+		}
+
+		@media @large {
+			padding-right: 2.8rem;
+		}
+
+		&.rotate {
+			background: @accent-error;
+			padding: 13px 19px 13px 19px;
+			z-index: 6000;
+
+			@media @large {
+				padding: 21px 36px 13px 32px;
+			}
+
+			svg {
+				transform: rotate(45deg);
+				transform-origin: 50% 50%;
+				shape-rendering: auto;
+
+				line {
+					stroke: @bg-light;
+				}
+			}
+
+			sub {
+				color: @bg-light;
+			}
+		}
+		
+		// Delete for new add item flow
+		&.fly-out-control, {
+			bottom: -1px;
+			padding: 1.2rem;
+			background: @accent-error;
+			border-bottom: 1px darken(@accent-error, 5%) solid;
+			border-left: 1px darken(@accent-error, 5%) solid;
+
+			@media @large {
+				padding: 1.8rem;
+			}
+
+			sub {
+				display: none;
+			}
+
+			svg line {
+				stroke: @bg-lightest;
+			}
+		}
+	}
+
+	.choose-img-container {
+		display: block;
+		position: relative;
+		margin-top: .875rem;
+		margin-right: 5rem;
+		float: right;
+		z-index: 4000;
+		transform: translatex(250px);
+		transition: transform .25s @physicsBezier;
+		cursor: auto;
+
+		@media @large {
+			margin-right: 7rem;
+			margin-top: 1.6rem;
+			transform: translatex(310px);
+		}
+
+		&.show {
+			transform: translatex(0px);
+
+		    .choose-img {
+			    display: block;
+			}
+
+		  	.choose-img-file {
+			  	display: block;
+			}
+		}
+
+		&.fadeout {
+			opacity: 0;
+		}
+
+		&.hide {
+			display: none;
+		}
+
+		&.hover {
+
+			.choose-img {
+				background: darken(@accent-link, 10%);
+				border-color: darken(@accent-link, 10%);
+
+				&:before {
+					background: darken(@accent-link, 20%);
+				}
+			}
+		}
+		
+		// make sure we can't see this when right fly out is showing
+		.show-right & {
+			margin-right: 3rem;
+		}
+	}
+
+	input[type=file] {
+	  	display: none;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 500;
+		opacity: 0;
+		cursor: auto;
+		-webkit-appearance: none;
+
+		&:focus {
+			outline: none;
+			border: none;
+		}
+	}
+
+	.choose-img {
+		display: none;
+		position: relative;
+		width: 11.4rem;
+		padding-left: 3rem;
+		background: @accent-link;
+		border: 1px darken(@accent-link, 10%) solid;
+		transition: background @animTime ease;
+		cursor: auto;
+
+	  	&:before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			width: 2rem;
+			background: darken(@accent-link, 10%);
+			transition: background @animTime ease;
+		}
+
+		svg {
+			position: absolute;
+			left: .15rem;
+			top: .15rem;
+			
+			path {
+				fill: @bg-lightest !important; // over ride header icon hover state styling
+			}
+		} 
+	}
+}
+
+header {
+
+	@media @large {
+		
+		*:hover, .active {
+			
+			sub {
+				color: @bg-darkest;
+			}
+
+			svg {
+					
+				path {
+					fill: @bg-darkest;
+				}
+
+				line, ellipse, circle {
+					stroke: @bg-darkest;
+				}
+
+				circle {
+						stroke: @bg-darkest;
+				}
+				
+				&.icn-glasses {
+					
+					path {
+						stroke: @bg-darkest;
+						fill: none;
+					}
+				}
+			}
+		}
+	}
+}

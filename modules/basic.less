@@ -1,0 +1,201 @@
+/* ==============================
+	basic styles
+   ============================== */
+
+html, html:after, html:before,
+*, *:before, *:after {
+	box-sizing: border-box;
+	text-transform: lowercase;
+}
+
+html, body {
+	min-width: 320px;
+	margin: 0;
+	padding: 0;
+	background: @bg-light;
+	font-family: "bryant-web-condensed", sans-serif;
+	font-size: 15px;
+	line-height: 1rem;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
+
+	@media @large {
+		font-size: 17px;
+	}
+}
+
+body {
+	position: relative;
+
+	@media @large {
+		min-width: 46rem;
+	}
+}
+
+a {
+	text-decoration: none;
+	color: @accent-link;
+}
+
+img {
+	width: 100%;
+	border-radius: @border-radius;
+	border: none;
+	color: @bg-med;
+
+	&.thumbnail {
+		width: 1.66rem;
+		height: 1.66rem;
+	}
+}
+
+/* == form elements == */
+
+label {
+	position: relative;
+	display: block;
+	margin: .86rem auto .43rem auto;
+	font-size: 1rem;
+	font-weight: @fontweight-med;
+	color: @text-med;
+	transition: color @animTime ease;
+
+	&.focus {
+		color: @bg-dark;
+	}
+
+	.word-count {
+		float: right;
+		color: lighten(@bg-med, 15%);
+
+		&.loads-left {
+			color: @bg-med;
+		}
+
+		&.some-left {
+			color: #e78c3c;
+		}
+
+		&.not-a-lot-left {
+			color: @accent-error;
+		}
+	}
+}
+
+input[type=text], textarea, input[type=password],
+input[type=email] {
+	display: block;
+	width: 100%;
+	padding: .66rem;
+	background: @bg-lightest;
+	border-radius: @border-radius;
+	border: @border-width @border-color-med solid;
+	transition: border @animTime ease;
+	outline: none;
+	font-size: 100%;
+	font-family: inherit;
+	text-transform: none;
+
+	&:hover {
+		border-color: darken(@border-color-med, 15%);
+	}
+
+	&:focus {
+		border-color: @bg-dark;
+	}
+}
+
+[tabindex]:focus {
+	outline: none;
+}
+
+textarea {
+	height: 5rem;
+}
+
+input[type=submit] {
+	background: @accent-link;
+}
+
+input[type=file] {
+	position: fixed;
+	top: -5rem;
+}
+
+select {
+	width: 100%;
+	height: 2.5rem;
+	background: @bg-lightest;
+	font-family: "bryant-web-condensed", sans-serif; // explicitly set font family on select elements to avoid UA stylesheets overriding
+}
+
+.error {
+	position: relative;
+	width: 100%;
+	margin-bottom: .5rem;
+	padding: .875rem .875rem .875rem 3rem;
+	background: @accent-error;
+	border-radius: @border-radius;
+	color: @bg-lightest;
+	list-style-type: none;
+
+	&:before {
+		content: '!';
+		position: absolute;
+		left: .5rem;
+		top: 50%;
+		width: 30px;
+		height: 30px;
+		margin-top: -15px;
+		padding: 7px 0 0 1px;
+		background: darken(@accent-error, 10%);
+		border-radius: 50%;
+		font-size: 1.5rem;
+		text-align: center;
+		font-weight: 700;
+	}
+
+	&:after {
+		content: '';
+		position: absolute;
+		right: 1rem;
+		bottom: -2px;
+		width: 10px;
+		height: 10px;
+		background: @accent-error;
+		transform: rotate(45deg);
+	}
+
+	&.hide {
+		display: none;
+	}
+
+	&.soft {
+		margin: 0;
+		padding: .75rem;
+		border-radius: 0;
+
+		&:before {
+			display: none;
+		}
+
+		&:after {
+			display: none;
+		}
+	}
+
+	&.super-soft {
+		background: @border-color-med;
+
+		span {
+			text-decoration: none;
+		}
+	}
+
+	a, span {
+		color: inherit;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+}
