@@ -1,11 +1,11 @@
-@import '../normalise.less';
-@import '../vars.less';
-@import '../mixins.less';
-@import '../basic.less';
-@import '../buttons.less';
-@import '../icons.less';
-@import '../anims.less';
-@import '../spinner.less';
+@import 'modules/normalise.less';
+@import 'modules/vars.less';
+@import 'modules/mixins.less';
+@import 'modules/basic.less';
+@import 'modules/buttons.less';
+@import 'modules/icons.less';
+@import 'modules/anims.less';
+@import 'modules/spinner.less';
 
 /* ==============================================
    website specific variables
@@ -131,7 +131,7 @@ section.register {
         button {
 
             &.submit {
-                top: 3.5rem;    
+                top: 3.5rem;
             }
 
             &.collapse-register {
@@ -174,7 +174,7 @@ section.register {
             }
 
             &.loading {
-                
+
                 p {
                     opacity: 0;
                 }
@@ -230,7 +230,7 @@ section.register {
     opacity: .5;
     transform: translateY(.25rem);
     transition: opacity @animTime ease, transform @animTime ease;
-    
+
     // squidge content as much as possible if device isn't very tall
     @media screen and (max-device-height: 650px) {
         margin-bottom: 0rem;
@@ -285,7 +285,7 @@ section.register {
                 opacity: 1;
             }
         }
-        
+
         &:before {
             content: '';
             position: absolute;
@@ -301,7 +301,7 @@ section.register {
                 opacity: 0;
             }
         }
-    
+
         &:nth-of-type(odd) {
             padding: 1rem 1rem 1rem 0;
             border-right: none;
@@ -354,9 +354,9 @@ section.register {
                 left: 0;
                 float: none;
                 transform: translateX(0);
-            }    
+            }
         }
-        
+
         // use a floated layout for IE9 and mobile devices
         &:first-of-type {
             float: left;
@@ -627,7 +627,7 @@ a.soft-link {
     overflow: auto;
     line-height: 1.5;
     text-align: center;
-    
+
     h4 {
         margin: .25rem 0;
         color: @bg-lightest;
