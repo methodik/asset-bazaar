@@ -40,7 +40,7 @@ Load the files from the AWS bucket:
     https://s3-eu-west-1.amazonaws.com/assets.hevnly.com/v*.*/hevnly.css
     https://s3-eu-west-1.amazonaws.com/assets.hevnly.com/v*.*/website.css
 
-_Change v*.* with the version number you'd like to use
+Change v*.* with the version number you'd like to use
 
 ## Collaborate
 
