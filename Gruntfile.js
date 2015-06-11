@@ -25,13 +25,8 @@ module.exports = function(grunt) {
                 require('csswring')
               ]
             },
-            hevnly: {
-              src: 'css/hevnly.css',
-              dest: 'css/hevnly-prefixed.css'
-            },
-            website: {
-              src: 'css/website.css',
-              dest: 'css/website-prefixed.css'
+            css: {
+              src: 'css/*.css',
             }
         },
 
