@@ -77,7 +77,7 @@ span.search-bar {
 			left: .25em;
 		}
 	}
-	
+
 	input[type=search] {
 		-webkit-appearance: none;
 		height: 2.5em;
@@ -91,7 +91,7 @@ span.search-bar {
 		font-weight: 400 !important; // !important sorts out Chroms being indecisive about what to do.
 		color: white;
 		transition: border @animTime ease, color @animTime ease;
-		
+
 		// get rid of all shadow DOM styling
 		&::-webkit-search-decoration,
 		&::-webkit-search-cancel-button,
@@ -99,7 +99,7 @@ span.search-bar {
 		&::-webkit-search-results-decoration {
   			display: none;
 		}
-	
+
 		// cover up webkit autofil styling wih a box-shadow,
 		// to get rid of that horrid yellow colour.
 		&:-webkit-autofill {
@@ -143,14 +143,14 @@ span.search-bar {
 .off-canvas.left .searchapp {
 
 	@media @large {
-		display: none;	
+		display: none;
 	}
 }
 
 .off-canvas.left .search-results {
 
 	@media @large {
-		display: none;	
+		display: none;
 	}
 }
 
@@ -328,7 +328,7 @@ span.search-bar {
 		padding: 0 .5rem;
 		transform: translatey(-50%);
 		font-size: 11px;
-		
+
 		span {
 			color: @bg-lightest;
 
@@ -378,11 +378,11 @@ span.search-bar {
 	position: relative;
 	transform: translatey(7rem);
 	width: 100%;
-	
+
 	.search-message {
 		display: none;
 		text-align: center;
-  
+
 		@media @large {
 			display: block;
 		}

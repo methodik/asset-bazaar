@@ -22,7 +22,7 @@
 		margin-top: 0;
 		border: none;
 		background: transparent;
-		
+
 		h3 {
 			display: none;
 		}
@@ -38,7 +38,7 @@
 
 		.error {
 			margin-bottom: 1rem;
-			
+
 			// add some space between error message and label
 			+ label:first-of-type {
 				margin-top: 1rem;
@@ -62,7 +62,7 @@
 		}
 	}
 
-	&.empty { 
+	&.empty {
 
 		table, .show-edit-btn {
 			opacity: 0;
@@ -87,7 +87,7 @@
 			padding: .5rem;
 			border: none;
 			border-top: 1px @border-color-med solid;
-			border-radius: 0;	
+			border-radius: 0;
 		}
 	}
 
@@ -97,7 +97,7 @@
 
 	.sub-controls {
 		display: flex;
-		
+
 		button {
 			position: relative;
 			width: 50%;
@@ -137,7 +137,7 @@
 	ul.error {
 		width: 100% !important;
 		margin: 0 !important;
-		
+
 		// hide pseudo element as it gives visual cue to inline validation
 		&:after {
 			display: none;
@@ -229,7 +229,7 @@ table.crud {
 .wallet {
 
 	.card-choose {
-		text-align: center;	
+		text-align: center;
 	}
 
 	.month, .year {
@@ -252,7 +252,7 @@ table.crud {
 			background: darken(@accent-error, 10%);
 			border-right: 1px @border-color-med solid;
 		}
-		
+
 		// remove '!' & pointer for row styling
 		&:before, &:after {
 			display: none;
@@ -270,7 +270,7 @@ table.crud {
 			display: block;
 			margin-bottom: .25rem;
 		}
-	
+
 		// no need to show message when a user is adding a new card
 		.add-new-form& {
 			display: none;
@@ -280,7 +280,7 @@ table.crud {
 
 // address book crud module
 .crud.address-book {
-	
+
 	td.address-billing, td.address-delivery, th.address-billing, th.address-delivery {
 		text-align: center;
 	}
@@ -416,7 +416,7 @@ table.crud {
 		}
 
 		[disabled], [disabled]:hover, &[disabled]:focus {
-			border: 1px @border-color-med dashed; 
+			border: 1px @border-color-med dashed;
 			opacity: .4;
 		}
 
@@ -440,7 +440,7 @@ table.crud {
 		right: 0;
 		width: 100%;
 		transition: opacity .3s ease;
-		
+
 		.show-edit-view& {
 			display: flex;
 		}
@@ -489,7 +489,7 @@ table.crud {
 }
 
 .edit-form {
-	
+
 	.add-new-only {
 		display: none;
 	}
@@ -497,7 +497,7 @@ table.crud {
   	.delete {
   		display: block;
   	}
-	
+
 	// hide plus icon from update button
   	button.update .icn-plus {
   		display: none;

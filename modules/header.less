@@ -17,7 +17,7 @@ header[role=banner] {
 		font-size: .75rem;
 		color: @text-med;
 	}
-	
+
 	span, a {
 		position: absolute;
 		top: 0;
@@ -29,7 +29,7 @@ header[role=banner] {
 		&:focus {
 			outline: none;
 		}
- 
+
 		@media @large {
 			padding-top: 22px;
 		}
@@ -39,7 +39,7 @@ header[role=banner] {
 		position: relative;
 		display: block;
 		bottom: .3rem;
-		font-size: .7rem; 
+		font-size: .7rem;
 		text-align: center;
 		transition: all @animTime ease;
 
@@ -132,7 +132,7 @@ header[role=banner] {
 			}
 
 			&:hover {
-			
+
 				&:before {
 					background: rgba(0, 0, 0, 0.75);
 					z-index: 500;
@@ -176,13 +176,13 @@ header[role=banner] {
 		&.active {
 
 			@media @large {
-				border-bottom: 2px @accent-error solid;	
+				border-bottom: 2px @accent-error solid;
 			}
 		}
 
 		svg {
 			display: block;
-			margin: 0 auto;  
+			margin: 0 auto;
 		}
 	}
 
@@ -205,7 +205,7 @@ header[role=banner] {
 		right: 0;
 
 		@media @small {
-			padding: 11px 13px 13px 13px; // slightly move the icon up. 
+			padding: 11px 13px 13px 13px; // slightly move the icon up.
 		}
 
 		@media @large {
@@ -235,7 +235,7 @@ header[role=banner] {
 				color: @bg-light;
 			}
 		}
-		
+
 		// Delete for new add item flow
 		&.fly-out-control, {
 			bottom: -1px;
@@ -306,7 +306,7 @@ header[role=banner] {
 				}
 			}
 		}
-		
+
 		// make sure we can't see this when right fly out is showing
 		.show-right & {
 			margin-right: 3rem;
@@ -356,26 +356,26 @@ header[role=banner] {
 			position: absolute;
 			left: .15rem;
 			top: .15rem;
-			
+
 			path {
 				fill: @bg-lightest !important; // over ride header icon hover state styling
 			}
-		} 
+		}
 	}
 }
 
 header {
 
 	@media @large {
-		
+
 		*:hover, .active {
-			
+
 			sub {
 				color: @bg-darkest;
 			}
 
 			svg {
-					
+
 				path {
 					fill: @bg-darkest;
 				}
@@ -387,9 +387,9 @@ header {
 				circle {
 						stroke: @bg-darkest;
 				}
-				
+
 				&.icn-glasses {
-					
+
 					path {
 						stroke: @bg-darkest;
 						fill: none;

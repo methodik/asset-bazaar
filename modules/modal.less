@@ -3,10 +3,10 @@
    ============================== */
 
 .modal-container {
-	
+
 	// remove this as soon as safari sorts it's shit out
 	&.scroll-hack .modal {
-		-webkit-overflow-scrolling: auto;		
+		-webkit-overflow-scrolling: auto;
 	}
 
 	.modal {
@@ -29,7 +29,7 @@
 		@media @small {
 			padding-bottom: 1.5rem;
 		}
-		
+
 		// change the styling when we have a large viewport
 	    @media @large {
 	    	top: 4.5rem;
@@ -50,7 +50,7 @@
 		.e-com& {
 			background: @bg-light;
 		}
-		
+
 		// close button styling
 		.close {
 	        display: block;
@@ -77,7 +77,7 @@
 	        path {
 	            fill: @bg-lightest;
 	        }
-	    } 
+	    }
 	}
 
 	/*=====================/
@@ -146,7 +146,7 @@
 		cursor: default;
 		border-radius: 0;
 	}
-	
+
 	.product-info {
 		padding: 0 .5rem .5rem .5rem;
 		line-height: 1.5;
@@ -155,7 +155,7 @@
 			padding: .5rem 2rem 1.5rem 2rem;
 		}
 	}
-	
+
 	// header post info (by brand & num of likes)
 	.post-info {
 		padding: 0 .5rem 1.5rem .5rem;
@@ -187,10 +187,10 @@
 			content: '';
 			display: inline-block;
 			height: 4px;
-			width: 4px; 
+			width: 4px;
 			margin-left: .5rem;
 			margin-bottom: .2rem;
-			background: @bg-med;  
+			background: @bg-med;
 			border-radius: 2px;
 
 			@media @small {
@@ -252,7 +252,7 @@
 	.modal-back {
 		display: none;
 	}
-	
+
 	// and align text to left
 	h2 {
 		text-align: left;
@@ -273,7 +273,7 @@
 		width: 2400px;
 		min-height: ~"calc(100vh - 9rem)";
 	}
-	
+
 	&[data-slideview="0"] {
 		margin-left: 0%;
 	}
@@ -296,12 +296,12 @@
 		width: 33.33%;
 		float: left;
 	}
-	
+
 	// make e-com slides have a light bg
 	div[data-slideview] {
 		background: @bg-light;
 	}
-	
+
 	// ...but not the item modal
 	div[data-slideview="0"] {
 		background: @bg-lightest;
@@ -316,7 +316,7 @@
 			margin: 1.5rem;
 		}
 	}
-	
+
 	// push product-info & comment to left
 	.product-info, .comments {
 
