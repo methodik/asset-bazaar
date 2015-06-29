@@ -1,0 +1,7 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" enable-background="new 0 0 24 24" class="icn-clock">
+	<circle stroke-miterlimit="10" cx="12" cy="12" r="7.5"/>
+	<line stroke-miterlimit="10" x1="12" y1="12" x2="16" y2="9.3"/>
+	<line stroke-miterlimit="10" x1="12" y1="12" x2="12" y2="5.3"/>
+	<circle stroke-miterlimit="10" cx="12" cy="12" r="0.5"/>
+</svg>
