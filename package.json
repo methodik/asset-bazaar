@@ -2,6 +2,7 @@
   "name": "asset-bazaar",
   "version": "0.0.1",
   "description": "hevnly's assets for public facing sites",
+  "license": "",
   "dependencies": {
     "grunt": "^0.4.5",
     "grunt-postcss": "^0.5.1"

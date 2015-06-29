@@ -30,7 +30,8 @@ deploy:
     api_key:
       secure: aQXg5VFSnxZt/KNmr7ea0FrPqsMxDq1zDSM7XkNTib9rTZvDW4320zLibSVhoU0qEu322qNoKbDh0r0zSR+w+DA6vhJwePovP2FZj+y/NB2qUc11X1kOiudFLz8Glw+NSv56QRdmLgR+Z3AkWOE+KNMjOZmhcawCAlR+UNxjwL7pegZmUkIp0tv8tB04RRF9galXa4dNjp4mJ9UvnR6YtUejtbNBznqggeT4316dLNqPR4gM83qXfIJfUqtXsMaZPFjzb4I8O+UKkReyHWqveezIYvVaje1jWUBtF5X8QnJjKqze2v9fREvEAFZQUwJQAVSXm+BWlzW39ovw0Dj2fAcFoG/+BeyDOin0CspIsnnZy94pkSbKjBUtaFkccef+7O8qY8lsUa1AkRAJt3NoRxioMzuSRKZJZleMGdRqMlvfBBUqnZt152zYsdXu0NrQg4SRXpvL6iMBWZySTABU2iMSfCrVFGwR/lyhtN3UJsrk98QcVtwoR3+1lW+HJ2FD5YlWay062zrfqmC9a0I8k2Jvlw6Wu+xAd+Mb/NMhQBK5Fv7m/FtJtMp3sNulfgcwgZkJFxL9+kG73O9g5b5JzP8C1croVOsh7Tp1bbS3jcf4JGJAwbNbuaSgC7Ip6Lmz62SWypdnwJ7gyFo6x4n1XGT3Zz9Y+3W1VY3SS3mUFjU=
     file:
-      - deploy-artifact
+      - css/hevnly.css
+      - css/website.css
     on:
       tags: true
     skip_cleanup: true
