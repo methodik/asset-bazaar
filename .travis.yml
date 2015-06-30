@@ -8,7 +8,7 @@ script:
 - grunt
 after_success:
 - mkdir -p deploy-artifact
-- mv css/* deploy-artifact
+- mv *.css deploy-artifact
 - mv images deploy-artifact
 - mv modules/*.css deploy-artifact/modules
 - mv asseticon deploy-artifact

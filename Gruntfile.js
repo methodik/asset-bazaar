@@ -11,8 +11,8 @@ module.exports = function(grunt) {
                     paths: ["modules/*"]
                 },
                 files: {
-                    "css/hevnly.css": "main.less",
-                    "css/website.css": "website.less"
+                    "hevnly.css": "main.less",
+                    "website.css": "website.less"
                 }
             }
         },
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
               ]
             },
             css: {
-              src: 'css/*.css',
+              src: './*.css',
             }
         },
 
